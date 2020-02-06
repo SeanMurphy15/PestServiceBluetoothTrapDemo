@@ -1,0 +1,163 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.1.3 (swiftlang-1100.0.282.1 clang-1100.0.33.15)
+// swift-module-flags: -target x86_64-apple-ios10.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name BellSensingBLE
+@_exported import BellSensingBLE
+import CoreBluetooth
+import Foundation
+import Swift
+import UIKit
+extension StringProtocol {
+  public func index(of string: Self, options: Swift.String.CompareOptions = []) -> Self.Index?
+  public func endIndex(of string: Self, options: Swift.String.CompareOptions = []) -> Self.Index?
+  public func indexes(of string: Self, options: Swift.String.CompareOptions = []) -> [Self.Index]
+  public func ranges(of string: Self, options: Swift.String.CompareOptions = []) -> [Swift.Range<Self.Index>]
+  public func indexDistance(of string: Self) -> Swift.Int?
+}
+extension Data {
+  public var uint8: Swift.UInt8 {
+    get
+  }
+  public var string: Swift.String {
+    get
+  }
+  public init?(dataHexFromString: Swift.String)
+  public func hexEncodedStringData() -> Swift.String
+}
+extension String {
+  public var dateFromISO8601: Foundation.Date? {
+    get
+  }
+  public func removeWhitespace() -> Swift.String
+  public func replace(string: Swift.String, replacement: Swift.String) -> Swift.String
+  public func convertManufactureDate() -> Swift.String
+  public func hexToInt8Minus128() -> Swift.String
+  public func hexToInt8() -> Swift.String
+  public func hexToInt16() -> Swift.String
+  public func hexToInt32() -> Swift.String
+  public func hexToInt64() -> Swift.String
+  public func fromBase64() -> Swift.String?
+  public func toBase64() -> Swift.String?
+  public func getMACAdvertisingData(split every: Swift.Int) -> Swift.String?
+  public func fromBase64ToHexString() -> Swift.String
+  public func getHexDataArray(split every: Swift.Int) -> [Swift.String]?
+  public func removeWhiteSpaceAndHexCaracter() -> Swift.String
+  public func getSignatureHex() -> Swift.String
+}
+@objc public class SyncSignatureModel : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public class AdvertisingDataModel : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public class BeaconData : ObjectiveC.NSObject {
+  public var schema: Swift.UInt8
+  public var serial: Swift.String
+  public var model: Swift.UInt8
+  public var transmitPower: Swift.UInt8
+  public var temperature: Swift.UInt8
+  public var battery: Swift.UInt8
+  public var detectionsSinceLastService: Swift.Int
+  public var eventsSinceLastService: Swift.UInt8
+  public var baseSeconds: Swift.UInt
+  public var rssi: Swift.Int
+  public var rssiReference: Swift.UInt8
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension Int {
+  public func batteryNewScale() -> Swift.Int
+}
+@objc public class DeviceEvent : ObjectiveC.NSObject {
+  public var start: Foundation.Date
+  public var end: Foundation.Date
+  public var detections: Swift.Array<BellSensingBLE.DeviceDetection>
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension Date {
+  public var iso8601: Swift.String {
+    get
+  }
+}
+@objc public class DeviceScanner : ObjectiveC.NSObject, BellSensingBLE.BluetoothDelegate {
+  public static func getInstance(cbCentralManager: CoreBluetooth.CBCentralManager) -> BellSensingBLE.DeviceScanner
+  public func startScan(callback: ((BellSensingBLE.BeaconData) -> Swift.Void)?)
+  public func endScan()
+  public func activateDevice(serial: Swift.String, siteId: Foundation.UUID, key: Swift.String) -> Swift.Bool
+  public func deactivateDevice(serial: Swift.String, key: Swift.String) -> Swift.Bool
+  public func downloadEvents(beaconData: BellSensingBLE.BeaconData?, serial: Swift.String, key: Swift.String, filterSeconds: Swift.UInt64) -> [BellSensingBLE.DeviceEvent]
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension DeviceScanner {
+  @objc dynamic public func didUpdateState(_ state: CoreBluetooth.CBManagerState)
+  @objc dynamic public func didDiscoverPeripheral(_ peripheral: CoreBluetooth.CBPeripheral, advertisementData: [Swift.String : Any], RSSI: Foundation.NSNumber)
+  @objc dynamic public func didConnectedPeripheral(_ connectedPeripheral: CoreBluetooth.CBPeripheral)
+  @objc dynamic public func failToConnectPeripheral(_ peripheral: CoreBluetooth.CBPeripheral, error: Swift.Error)
+  @objc dynamic public func didDiscoverServices(_ peripheral: CoreBluetooth.CBPeripheral)
+  @objc dynamic public func didDisconnectPeripheral(_ peripheral: CoreBluetooth.CBPeripheral)
+  @objc dynamic public func didFailedToInterrogate(_ peripheral: CoreBluetooth.CBPeripheral)
+  @objc dynamic public func didReadValueForCharacteristic(_ characteristic: CoreBluetooth.CBCharacteristic)
+}
+public enum SyncDeviceStatus : Swift.String {
+  case noDownload
+  case downloading
+  case downloaded
+  public typealias RawValue = Swift.String
+  public init?(rawValue: Swift.String)
+  public var rawValue: Swift.String {
+    get
+  }
+}
+@objc public protocol BluetoothDelegate : ObjectiveC.NSObject {
+  @objc optional func didUpdateState(_ state: CoreBluetooth.CBManagerState)
+  @objc optional func didDiscoverPeripheral(_ peripheral: CoreBluetooth.CBPeripheral, advertisementData: [Swift.String : Any], RSSI: Foundation.NSNumber)
+  @objc optional func didConnectedPeripheral(_ connectedPeripheral: CoreBluetooth.CBPeripheral)
+  @objc optional func failToConnectPeripheral(_ peripheral: CoreBluetooth.CBPeripheral, error: Swift.Error)
+  @objc optional func didDiscoverServices(_ peripheral: CoreBluetooth.CBPeripheral)
+  @objc optional func didDisconnectPeripheral(_ peripheral: CoreBluetooth.CBPeripheral)
+  @objc optional func didFailedToInterrogate(_ peripheral: CoreBluetooth.CBPeripheral)
+  @objc optional func didDiscoverCharacteristics(_ service: CoreBluetooth.CBService)
+  @objc optional func didFailToDiscoverCharacteritics(_ error: Swift.Error)
+  @objc optional func didDiscoverDescriptors(_ characteristic: CoreBluetooth.CBCharacteristic)
+  @objc optional func didFailToDiscoverDescriptors(_ error: Swift.Error)
+  @objc optional func didReadValueForCharacteristic(_ characteristic: CoreBluetooth.CBCharacteristic)
+  @objc optional func didFailToReadValueForCharacteristic(_ error: Swift.Error)
+  @objc optional func didWriteValueForCharacteristic(_ characteristic: CoreBluetooth.CBCharacteristic)
+  @objc optional func didFailToWriteValueForCharacteristic(_ error: Swift.Error)
+  @objc optional func didUpdateNotificationValueForCharacteristic(_ characteristic: CoreBluetooth.CBCharacteristic)
+  @objc optional func didFailToUpdateNotificationValueForCharacteristic(_ error: Swift.Error)
+}
+@objc public class BluetoothManager : ObjectiveC.NSObject, CoreBluetooth.CBCentralManagerDelegate, CoreBluetooth.CBPeripheralDelegate {
+  @objc public func centralManagerDidUpdateState(_ central: CoreBluetooth.CBCentralManager)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDiscover peripheral: CoreBluetooth.CBPeripheral, advertisementData: [Swift.String : Any], rssi RSSI: Foundation.NSNumber)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didConnect peripheral: CoreBluetooth.CBPeripheral)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didFailToConnect peripheral: CoreBluetooth.CBPeripheral, error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverServices error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverCharacteristicsFor service: CoreBluetooth.CBService, error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didDiscoverDescriptorsFor characteristic: CoreBluetooth.CBCharacteristic, error: Swift.Error?)
+  @objc public func centralManager(_ central: CoreBluetooth.CBCentralManager, didDisconnectPeripheral peripheral: CoreBluetooth.CBPeripheral, error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateValueFor characteristic: CoreBluetooth.CBCharacteristic, error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didUpdateNotificationStateFor characteristic: CoreBluetooth.CBCharacteristic, error: Swift.Error?)
+  @objc public func peripheral(_ peripheral: CoreBluetooth.CBPeripheral, didWriteValueFor characteristic: CoreBluetooth.CBCharacteristic, error: Swift.Error?)
+  @objc deinit
+}
+@objc public class SyncDeviceModel : ObjectiveC.NSObject {
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public class DeviceDetection : ObjectiveC.NSObject {
+  public var seconds: Swift.Int64
+  public var signature: Swift.String
+  public var time: Foundation.Date
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension Formatter {
+  public static let iso8601: Foundation.DateFormatter
+}
+extension BellSensingBLE.SyncDeviceStatus : Swift.Equatable {}
+extension BellSensingBLE.SyncDeviceStatus : Swift.Hashable {}
+extension BellSensingBLE.SyncDeviceStatus : Swift.RawRepresentable {}

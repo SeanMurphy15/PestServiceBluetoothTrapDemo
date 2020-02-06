@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279ED823EBF984004F1E07 /* StorageController.swift */; };
+		D4AA361B23EA02ED009D963E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361A23EA02ED009D963E /* AppDelegate.swift */; };
+		D4AA361D23EA02ED009D963E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361C23EA02ED009D963E /* SceneDelegate.swift */; };
+		D4AA361F23EA02ED009D963E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361E23EA02ED009D963E /* ContentView.swift */; };
+		D4AA362123EA02EE009D963E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4AA362023EA02EE009D963E /* Assets.xcassets */; };
+		D4AA362423EA02EE009D963E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4AA362323EA02EE009D963E /* Preview Assets.xcassets */; };
+		D4AA362723EA02EE009D963E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4AA362523EA02EE009D963E /* LaunchScreen.storyboard */; };
+		D4AA362F23EA0357009D963E /* BluetoothController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA362E23EA0357009D963E /* BluetoothController.swift */; };
+		D4AA363623EA03FF009D963E /* BellSensingBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AA363523EA03FF009D963E /* BellSensingBLE.framework */; };
+		D4AA363723EA03FF009D963E /* BellSensingBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4AA363523EA03FF009D963E /* BellSensingBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4AA363A23EA3F53009D963E /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA363923EA3F53009D963E /* DeviceDetailView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D4AA363823EA03FF009D963E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D4AA363723EA03FF009D963E /* BellSensingBLE.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		D4279ED823EBF984004F1E07 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
+		D4AA361723EA02ED009D963E /* PestServiceBluetoothTrapDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PestServiceBluetoothTrapDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D4AA361A23EA02ED009D963E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D4AA361C23EA02ED009D963E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D4AA361E23EA02ED009D963E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D4AA362023EA02EE009D963E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D4AA362323EA02EE009D963E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D4AA362623EA02EE009D963E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D4AA362823EA02EE009D963E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4AA362E23EA0357009D963E /* BluetoothController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothController.swift; sourceTree = "<group>"; };
+		D4AA363523EA03FF009D963E /* BellSensingBLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BellSensingBLE.framework; path = PestServiceBluetoothTrapDemo/BellSensingBLE.framework; sourceTree = "<group>"; };
+		D4AA363923EA3F53009D963E /* DeviceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D4AA361423EA02ED009D963E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4AA363623EA03FF009D963E /* BellSensingBLE.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D4AA360E23EA02ED009D963E = {
+			isa = PBXGroup;
+			children = (
+				D4AA361923EA02ED009D963E /* PestServiceBluetoothTrapDemo */,
+				D4AA361823EA02ED009D963E /* Products */,
+				D4AA363023EA03A6009D963E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		D4AA361823EA02ED009D963E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D4AA361723EA02ED009D963E /* PestServiceBluetoothTrapDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D4AA361923EA02ED009D963E /* PestServiceBluetoothTrapDemo */ = {
+			isa = PBXGroup;
+			children = (
+				D4AA361A23EA02ED009D963E /* AppDelegate.swift */,
+				D4AA361C23EA02ED009D963E /* SceneDelegate.swift */,
+				D4AA361E23EA02ED009D963E /* ContentView.swift */,
+				D4AA363923EA3F53009D963E /* DeviceDetailView.swift */,
+				D4AA362E23EA0357009D963E /* BluetoothController.swift */,
+				D4AA362023EA02EE009D963E /* Assets.xcassets */,
+				D4AA362523EA02EE009D963E /* LaunchScreen.storyboard */,
+				D4AA362823EA02EE009D963E /* Info.plist */,
+				D4AA362223EA02EE009D963E /* Preview Content */,
+				D4279ED823EBF984004F1E07 /* StorageController.swift */,
+			);
+			path = PestServiceBluetoothTrapDemo;
+			sourceTree = "<group>";
+		};
+		D4AA362223EA02EE009D963E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D4AA362323EA02EE009D963E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D4AA363023EA03A6009D963E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4AA363523EA03FF009D963E /* BellSensingBLE.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D4AA361623EA02ED009D963E /* PestServiceBluetoothTrapDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4AA362B23EA02EE009D963E /* Build configuration list for PBXNativeTarget "PestServiceBluetoothTrapDemo" */;
+			buildPhases = (
+				D4AA361323EA02ED009D963E /* Sources */,
+				D4AA361423EA02ED009D963E /* Frameworks */,
+				D4AA361523EA02ED009D963E /* Resources */,
+				D4AA363823EA03FF009D963E /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PestServiceBluetoothTrapDemo;
+			productName = PestServiceBluetoothTrapDemo;
+			productReference = D4AA361723EA02ED009D963E /* PestServiceBluetoothTrapDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D4AA360F23EA02ED009D963E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1130;
+				LastUpgradeCheck = 1130;
+				ORGANIZATIONNAME = SeanMurphy;
+				TargetAttributes = {
+					D4AA361623EA02ED009D963E = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
+				};
+			};
+			buildConfigurationList = D4AA361223EA02ED009D963E /* Build configuration list for PBXProject "PestServiceBluetoothTrapDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D4AA360E23EA02ED009D963E;
+			productRefGroup = D4AA361823EA02ED009D963E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D4AA361623EA02ED009D963E /* PestServiceBluetoothTrapDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D4AA361523EA02ED009D963E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4AA362723EA02EE009D963E /* LaunchScreen.storyboard in Resources */,
+				D4AA362423EA02EE009D963E /* Preview Assets.xcassets in Resources */,
+				D4AA362123EA02EE009D963E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D4AA361323EA02ED009D963E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D4AA361B23EA02ED009D963E /* AppDelegate.swift in Sources */,
+				D4AA363A23EA3F53009D963E /* DeviceDetailView.swift in Sources */,
+				D4AA361D23EA02ED009D963E /* SceneDelegate.swift in Sources */,
+				D4AA362F23EA0357009D963E /* BluetoothController.swift in Sources */,
+				D4AA361F23EA02ED009D963E /* ContentView.swift in Sources */,
+				D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D4AA362523EA02EE009D963E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4AA362623EA02EE009D963E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D4AA362923EA02EE009D963E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D4AA362A23EA02EE009D963E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D4AA362C23EA02EE009D963E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PestServiceBluetoothTrapDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = 3YYH3MTSSU;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PestServiceBluetoothTrapDemo",
+				);
+				INFOPLIST_FILE = PestServiceBluetoothTrapDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SeanMurphy.PestServiceBluetoothTrapDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D4AA362D23EA02EE009D963E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"PestServiceBluetoothTrapDemo/Preview Content\"";
+				DEVELOPMENT_TEAM = 3YYH3MTSSU;
+				ENABLE_PREVIEWS = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/PestServiceBluetoothTrapDemo",
+				);
+				INFOPLIST_FILE = PestServiceBluetoothTrapDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = SeanMurphy.PestServiceBluetoothTrapDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D4AA361223EA02ED009D963E /* Build configuration list for PBXProject "PestServiceBluetoothTrapDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4AA362923EA02EE009D963E /* Debug */,
+				D4AA362A23EA02EE009D963E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4AA362B23EA02EE009D963E /* Build configuration list for PBXNativeTarget "PestServiceBluetoothTrapDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4AA362C23EA02EE009D963E /* Debug */,
+				D4AA362D23EA02EE009D963E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D4AA360F23EA02ED009D963E /* Project object */;
+}

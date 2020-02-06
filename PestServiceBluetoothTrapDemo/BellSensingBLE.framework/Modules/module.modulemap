@@ -1,0 +1,11 @@
+framework module BellSensingBLE {
+  umbrella header "BellSensingBLE.h"
+
+  export *
+  module * { export * }
+}
+
+module BellSensingBLE.Swift {
+    header "BellSensingBLE-Swift.h"
+    requires objc
+}
