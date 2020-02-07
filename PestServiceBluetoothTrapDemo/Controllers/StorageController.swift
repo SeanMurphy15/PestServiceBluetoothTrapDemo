@@ -34,8 +34,9 @@ class StorageController {
         }
     }
 
-     func saveVersion(data: [String : Any]) {
+     func saveVersion(data: [String : Any]?) {
 
+        guard let data = data else { return }
         siteCache().set(data, forKey: "version")
     }
 
@@ -124,8 +125,9 @@ class StorageController {
         return result
     }
     
-     func saveActivationAndDeviceKeys(keys: [String : Any]) {
-        
+     func saveActivationAndDeviceKeys(keys: [String : Any]?) {
+
+        guard let keys = keys else { return }
         siteCache().setValue(keys, forKeyPath: "activationAndDeviceKeys")
         
     }

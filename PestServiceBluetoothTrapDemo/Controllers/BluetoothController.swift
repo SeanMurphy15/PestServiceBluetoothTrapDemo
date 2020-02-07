@@ -26,6 +26,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
         storage = StorageController.shared
         centralManager = CBCentralManager(delegate: self, queue: nil)
         deviceScanner = DeviceScanner.getInstance(cbCentralManager: centralManager)
+
     }
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
@@ -58,8 +59,6 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
                     self.storage.saveDevice(data: discoveredDevice.toDictionary, serial: discoveredDevice.serial)
                 }
             }
-
-            NetworkController.shared.getVersion()
         }
 
         deviceScanner.startScan { (beaconData) in
@@ -75,9 +74,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
     func activateDevice(beaconData: BeaconData){
 
         if beaconData.isActivated { return }
-
         let result = deviceScanner.activateDevice(serial: beaconData.serial, siteId: storage.siteId, key: beaconData.activationKey)
-
         storage.updateDeviceActivation(result: result, serial: beaconData.serial)
 
     }
@@ -85,9 +82,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
     // needs unique beacon DatadeviceKey after registering to site
     func downloadEvents(beaconData: BeaconData){
 
-
         let events = deviceScanner.downloadEvents(beaconData: beaconData, serial: beaconData.serial, key: beaconData.activationKey, filterSeconds: 0)
-
         storage.updateDeviceEvents(events: events, serial: beaconData.serial)
 
     }

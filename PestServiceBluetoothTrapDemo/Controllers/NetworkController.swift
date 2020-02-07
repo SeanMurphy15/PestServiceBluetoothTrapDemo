@@ -23,6 +23,7 @@ class NetworkController {
 
                     if isSuccess {
                         print(message)
+                        self.getVersion()
                     } else {
                         print(message)
                     }

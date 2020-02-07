@@ -22,21 +22,34 @@ class NetworkService {
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         let bodyStr:String = "grant_type=password&client_id=test&username=Ecolab&password=mMzgA6jT9GMbRjkofTJPM0tU"
         request.httpBody = bodyStr.data(using: String.Encoding.utf8)
+
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
 
             if let error = error {
-                completion(false, error.localizedDescription)
+                completion(false, "\(#function) failed with error: \(error.localizedDescription)")
             } else {
+
+                var result : [String : Any]?
+
                 do {
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
-                        StorageController.shared.saveAccessToken(accessToken: json["access_token"])
-                        completion(true, "Access token retreived successfully")
-                    } else {
-                        completion(false, "Failed to serialize JSON data")
-                    }
+                    result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
                 } catch let error as NSError {
-                    completion(false, "Failed to load: \(error.localizedDescription)")
+                    completion(false, "\(#function) JSONSerialization failed to load: \(error.localizedDescription)")
+                }
+
+                if let httpUrlResponse = response as? HTTPURLResponse {
+                    switch httpUrlResponse.statusCode {
+                    case 200:
+                        StorageController.shared.saveAccessToken(accessToken: result?["access_token"])
+                        completion(true, "\(#function) retreived successfully with status code: \(httpUrlResponse.statusCode)")
+                    default:
+                        completion(false, "\(#function) failed with status code: \(httpUrlResponse.statusCode)")
+
+                    }
+                    print("\(#function) result: \(result ?? ["":""])")
+                } else {
+                    completion(false, "\(#function) failed to convert response to HTTPURLResponse")
                 }
             }
         }
@@ -56,17 +69,29 @@ class NetworkService {
             data, response, error in
 
             if let error = error {
-                completion(false, error.localizedDescription)
+                completion(false, "\(#function) failed with error: \(error.localizedDescription)")
             } else {
+
+                var result : [String : Any]?
+
                 do {
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
-                        StorageController.shared.saveActivationAndDeviceKeys(keys: json)
-                        completion(true, "Activation and device keys retreived successfully")
-                    } else {
-                        completion(false, "Failed to serialize JSON data")
-                    }
+                    result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
                 } catch let error as NSError {
-                    completion(false, "Failed to load: \(error.localizedDescription)")
+                    completion(false, " \(#function) JSONSerialization failed to load: \(error.localizedDescription)")
+                }
+
+                if let httpUrlResponse = response as? HTTPURLResponse {
+                    switch httpUrlResponse.statusCode {
+                    case 200:
+                        StorageController.shared.saveActivationAndDeviceKeys(keys: result)
+                        completion(true, "\(#function) retreived successfully with status code: \(httpUrlResponse.statusCode)")
+                    default:
+                        completion(false, "\(#function) failed with status code: \(httpUrlResponse.statusCode)")
+
+                    }
+                    print(" \(#function) result: \(result ?? ["":""])")
+                } else {
+                    completion(false, "\(#function) failed to convert response to HTTPURLResponse")
                 }
             }
         }
@@ -86,17 +111,29 @@ class NetworkService {
             data, response, error in
 
             if let error = error {
-                completion(false, error.localizedDescription)
+                completion(false, "\(#function) failed with error: \(error.localizedDescription)")
             } else {
+
+                var result : [String : Any]?
+
                 do {
-                    if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any] {
-                        StorageController.shared.saveActivationAndDeviceKeys(keys: json)
-                        completion(true, "Bell Sensing Version retreived successfully")
-                    } else {
-                        completion(false, "Failed to serialize JSON data")
-                    }
+                    result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
                 } catch let error as NSError {
-                    completion(false, "Failed to load: \(error.localizedDescription)")
+                    completion(false, "\(#function) JSONSerialization failed to load: \(error.localizedDescription)")
+                }
+
+                if let httpUrlResponse = response as? HTTPURLResponse {
+                    switch httpUrlResponse.statusCode {
+                    case 200:
+                        StorageController.shared.saveVersion(data: result)
+                        completion(true, "\(#function) retreived successfully with status code: \(httpUrlResponse.statusCode)")
+                    default:
+                        completion(false, "\(#function) failed with status code: \(httpUrlResponse.statusCode)")
+
+                    }
+                    print(" \(#function) result: \(result ?? ["":""])")
+                } else {
+                    completion(false, "\(#function) failed to convert response to HTTPURLResponse")
                 }
             }
         }
