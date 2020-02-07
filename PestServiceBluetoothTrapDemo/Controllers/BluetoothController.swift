@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import BellSensingBLE
+import BellSensingBLE.Swift
 import CoreBluetooth
 import SwiftUI
 
@@ -76,14 +76,21 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
         if beaconData.isActivated { return }
 
         let result = deviceScanner.activateDevice(serial: beaconData.serial, siteId: storage.siteId, key: beaconData.activationKey)
-        storage.updateDeviceActivation(result: result, serial: beaconData.serial)
+
+        storage.updateDeviceActivationStatus(result: result, serial: beaconData.serial)
+
+//        if let value = result as? Bool {
+//            storage.updateDeviceActivationStatus(result: result, serial: beaconData.serial)
+//        } else if let value = result as? DeviceActivation {
+//            // save new DeviceActivation object
+//        }
 
     }
 
     // needs unique beacon DatadeviceKey after registering to site
     func downloadEvents(beaconData: BeaconData){
 
-        let events = deviceScanner.downloadEvents(beaconData: beaconData, serial: beaconData.serial, key: beaconData.activationKey, filterSeconds: 0)
+        let events = deviceScanner.downloadEvents(beaconData: beaconData, serial: beaconData.serial, key: beaconData.activationKey, filterSeconds: 0) // keep filter seconds at zero for now
         storage.updateDeviceEvents(events: events, serial: beaconData.serial)
 
     }

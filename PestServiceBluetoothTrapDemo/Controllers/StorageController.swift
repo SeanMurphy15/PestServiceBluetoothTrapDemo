@@ -13,10 +13,10 @@ class StorageController {
 
     static let shared = StorageController()
 
-     let siteId = UUID(uuidString: "96b3b257-afcc-482d-aea7-a069f5329934")!
-     var currentSerials : [String] = []
+    let siteId = UUID(uuidString: "96b3b257-afcc-482d-aea7-a069f5329934")!
+    var currentSerials : [String] = []
 
-     func siteCache() -> UserDefaults {
+    func siteCache() -> UserDefaults {
         
         if let defaults = UserDefaults(suiteName: siteId.uuidString) {
             return defaults
@@ -25,7 +25,7 @@ class StorageController {
         }
     }
 
-     func authCache() -> UserDefaults {
+    func authCache() -> UserDefaults {
 
         if let defaults = UserDefaults(suiteName: "auth") {
             return defaults
@@ -34,7 +34,7 @@ class StorageController {
         }
     }
 
-     func saveVersion(data: [String : Any]?) {
+    func saveVersion(data: [String : Any]?) {
 
         guard let data = data else { return }
         siteCache().set(data, forKey: "version")
@@ -44,7 +44,7 @@ class StorageController {
         return siteCache().dictionary(forKey: "version")
     }
 
-     func saveDevice(data: [String : Any], serial: String) {
+    func saveDevice(data: [String : Any], serial: String) {
 
         siteCache().set(data, forKey: serial)
 
@@ -59,40 +59,36 @@ class StorageController {
         return siteCache().dictionary(forKey: serial)
     }
 
-     func updateDeviceActivation(result: Bool, serial: String) {
+    func updateDeviceActivationStatus(result: Bool, serial: String) {
 
-        let cache = siteCache()
-
-        guard var dict = cache.dictionary(forKey: serial) else { return }
-        dict["isActivated"] = result
-
-        cache.set(dict, forKey: serial)
+        guard var device = self.loadDevice(serial: serial) else { return }
+        device["isActivated"] = result
+        self.saveDevice(data: device, serial: serial)
     }
 
-    func loadDeviceActiveStatus(serial: String) -> Bool {
+    func loadDeviceActivationStatus(serial: String) -> Bool {
 
-        guard let dict = StorageController.shared.loadDevice(serial: serial) else { return false }
-        return dict["isActivated"] as? Bool ?? false
+        guard let device = self.loadDevice(serial: serial) else { return false }
+        return device["isActivated"] as? Bool ?? false
     }
 
-     func updateDeviceEvents(events: [DeviceEvent], serial: String){
+    func updateDeviceEvents(events: [DeviceEvent], serial: String){
 
-        let cache = siteCache()
-
-        guard var dict = cache.dictionary(forKey: serial) else { return }
-
+        guard var device = self.loadDevice(serial: serial) else { return }
         var deviceEvents : [[String : Any]] = []
         for deviceEvent in events {
             let detectionDictArray = deviceEvent.detections.map({$0.toDictionary})
-            let eventDict : [String : Any] = ["start" : deviceEvent.start, "end" : deviceEvent.end, "detections": detectionDictArray]
+            let eventDict : [String : Any] = ["start" : deviceEvent.start,
+                                              "end" : deviceEvent.end,
+                                              "detections": detectionDictArray]
             deviceEvents.append(eventDict)
         }
-        dict["deviceEvents"] = deviceEvents
-        cache.set(dict, forKey: serial)
+        device["deviceEvents"] = deviceEvents
+        self.saveDevice(data: device, serial: serial)
 
     }
     
-     func loadDeviceKey(serial: String) -> [String : Any]? {
+    func loadDeviceKey(serial: String) -> [String : Any]? {
         
         guard let adKeys = siteCache().dictionary(forKey: "activationAndDeviceKeys") else {
             print("Activation and device keys not found in storage")
@@ -125,14 +121,14 @@ class StorageController {
         return result
     }
     
-     func saveActivationAndDeviceKeys(keys: [String : Any]?) {
+    func saveActivationAndDeviceKeys(keys: [String : Any]?) {
 
         guard let keys = keys else { return }
         siteCache().setValue(keys, forKeyPath: "activationAndDeviceKeys")
         
     }
     
-     func loadDeviceActivationKey(model: Int) -> String {
+    func loadDeviceActivationKey(model: Int) -> String {
         
         guard let activationKeys = siteCache().dictionary(forKey: "activationAndDeviceKeys") else {
             print("Activation and device keys not found in storage")
@@ -172,14 +168,14 @@ class StorageController {
         return ""
     }
 
-     func saveAccessToken(accessToken: Any?) {
+    func saveAccessToken(accessToken: Any?) {
         
         guard let token = accessToken else { return }
         authCache().setValue(token, forKeyPath: "accessToken")
         
     }
     
-     func loadAccessToken() -> String {
+    func loadAccessToken() -> String {
         
         guard let token = authCache().value(forKey: "accessToken") else {
             print("Access token not found in storage")
@@ -192,7 +188,7 @@ class StorageController {
         return accessToken
     }
     
-     func printDeviceCache() {
+    func printDeviceCache() {
 
         let cache = siteCache()
 
@@ -207,7 +203,7 @@ class StorageController {
         print("CURRENT DEVICES -> \(deviceArray)")
     }
     
-     func printAuthCache() {
+    func printAuthCache() {
         
         print("AUTH CACHE ->: \(authCache().dictionaryRepresentation())")
 
