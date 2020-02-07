@@ -19,6 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
 
+        NetworkController.shared.getActivationAndDeviceKeysWithAccessToken()
+
         // Create the SwiftUI view that provides the window contents.
         let contentView = ContentView()
 
@@ -29,6 +31,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

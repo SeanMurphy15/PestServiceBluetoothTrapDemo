@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279ED823EBF984004F1E07 /* StorageController.swift */; };
+		D4279EDB23ECBCE0004F1E07 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279EDA23ECBCE0004F1E07 /* NetworkService.swift */; };
+		D4279EDF23ECDEEF004F1E07 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279EDE23ECDEEF004F1E07 /* NetworkController.swift */; };
 		D4AA361B23EA02ED009D963E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361A23EA02ED009D963E /* AppDelegate.swift */; };
 		D4AA361D23EA02ED009D963E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361C23EA02ED009D963E /* SceneDelegate.swift */; };
 		D4AA361F23EA02ED009D963E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361E23EA02ED009D963E /* ContentView.swift */; };
@@ -18,6 +20,8 @@
 		D4AA363623EA03FF009D963E /* BellSensingBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AA363523EA03FF009D963E /* BellSensingBLE.framework */; };
 		D4AA363723EA03FF009D963E /* BellSensingBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4AA363523EA03FF009D963E /* BellSensingBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4AA363A23EA3F53009D963E /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA363923EA3F53009D963E /* DeviceDetailView.swift */; };
+		D4E14AB123ED16A600382BAF /* BeaconDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */; };
+		D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +40,8 @@
 
 /* Begin PBXFileReference section */
 		D4279ED823EBF984004F1E07 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
+		D4279EDA23ECBCE0004F1E07 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		D4279EDE23ECDEEF004F1E07 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		D4AA361723EA02ED009D963E /* PestServiceBluetoothTrapDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PestServiceBluetoothTrapDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AA361A23EA02ED009D963E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4AA361C23EA02ED009D963E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +53,8 @@
 		D4AA362E23EA0357009D963E /* BluetoothController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothController.swift; sourceTree = "<group>"; };
 		D4AA363523EA03FF009D963E /* BellSensingBLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BellSensingBLE.framework; path = PestServiceBluetoothTrapDemo/BellSensingBLE.framework; sourceTree = "<group>"; };
 		D4AA363923EA3F53009D963E /* DeviceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailView.swift; sourceTree = "<group>"; };
+		D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconDataExtensions.swift; sourceTree = "<group>"; };
+		D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetectionExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D4279EDC23ECDC77004F1E07 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				D4279EDA23ECBCE0004F1E07 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		D4279EDD23ECDC94004F1E07 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D4AA362E23EA0357009D963E /* BluetoothController.swift */,
+				D4279EDE23ECDEEF004F1E07 /* NetworkController.swift */,
+				D4279ED823EBF984004F1E07 /* StorageController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		D4AA360E23EA02ED009D963E = {
 			isa = PBXGroup;
 			children = (
@@ -85,12 +111,13 @@
 				D4AA361C23EA02ED009D963E /* SceneDelegate.swift */,
 				D4AA361E23EA02ED009D963E /* ContentView.swift */,
 				D4AA363923EA3F53009D963E /* DeviceDetailView.swift */,
-				D4AA362E23EA0357009D963E /* BluetoothController.swift */,
 				D4AA362023EA02EE009D963E /* Assets.xcassets */,
 				D4AA362523EA02EE009D963E /* LaunchScreen.storyboard */,
 				D4AA362823EA02EE009D963E /* Info.plist */,
+				D4279EDD23ECDC94004F1E07 /* Controllers */,
+				D4279EDC23ECDC77004F1E07 /* Services */,
 				D4AA362223EA02EE009D963E /* Preview Content */,
-				D4279ED823EBF984004F1E07 /* StorageController.swift */,
+				D4E14AAF23ECFA4B00382BAF /* Extensions */,
 			);
 			path = PestServiceBluetoothTrapDemo;
 			sourceTree = "<group>";
@@ -109,6 +136,15 @@
 				D4AA363523EA03FF009D963E /* BellSensingBLE.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4E14AAF23ECFA4B00382BAF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */,
+				D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,12 +219,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4279EDF23ECDEEF004F1E07 /* NetworkController.swift in Sources */,
 				D4AA361B23EA02ED009D963E /* AppDelegate.swift in Sources */,
 				D4AA363A23EA3F53009D963E /* DeviceDetailView.swift in Sources */,
 				D4AA361D23EA02ED009D963E /* SceneDelegate.swift in Sources */,
+				D4279EDB23ECBCE0004F1E07 /* NetworkService.swift in Sources */,
 				D4AA362F23EA0357009D963E /* BluetoothController.swift in Sources */,
 				D4AA361F23EA02ED009D963E /* ContentView.swift in Sources */,
+				D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */,
 				D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */,
+				D4E14AB123ED16A600382BAF /* BeaconDataExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
