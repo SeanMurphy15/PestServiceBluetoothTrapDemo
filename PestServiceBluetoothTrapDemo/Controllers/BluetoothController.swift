@@ -74,6 +74,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
     func activateDevice(beaconData: BeaconData){
 
         if beaconData.isActivated { return }
+
         let result = deviceScanner.activateDevice(serial: beaconData.serial, siteId: storage.siteId, key: beaconData.activationKey)
         storage.updateDeviceActivation(result: result, serial: beaconData.serial)
 
