@@ -22,6 +22,7 @@
 		D4AA363A23EA3F53009D963E /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA363923EA3F53009D963E /* DeviceDetailView.swift */; };
 		D4E14AB123ED16A600382BAF /* BeaconDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */; };
 		D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */; };
+		D4E575FB23EDEA3800857F1F /* DeviceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E575FA23EDEA3800857F1F /* DeviceRowView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +56,7 @@
 		D4AA363923EA3F53009D963E /* DeviceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailView.swift; sourceTree = "<group>"; };
 		D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconDataExtensions.swift; sourceTree = "<group>"; };
 		D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetectionExtensions.swift; sourceTree = "<group>"; };
+		D4E575FA23EDEA3800857F1F /* DeviceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +113,7 @@
 				D4AA361C23EA02ED009D963E /* SceneDelegate.swift */,
 				D4AA361E23EA02ED009D963E /* ContentView.swift */,
 				D4AA363923EA3F53009D963E /* DeviceDetailView.swift */,
+				D4E575FA23EDEA3800857F1F /* DeviceRowView.swift */,
 				D4AA362023EA02EE009D963E /* Assets.xcassets */,
 				D4AA362523EA02EE009D963E /* LaunchScreen.storyboard */,
 				D4AA362823EA02EE009D963E /* Info.plist */,
@@ -229,6 +232,7 @@
 				D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */,
 				D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */,
 				D4E14AB123ED16A600382BAF /* BeaconDataExtensions.swift in Sources */,
+				D4E575FB23EDEA3800857F1F /* DeviceRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
