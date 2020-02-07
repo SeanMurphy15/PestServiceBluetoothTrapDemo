@@ -17,7 +17,7 @@ struct ContentView: View {
 
         NavigationView {
             List(bluetoothController.discoveredDevices) { device in
-                DeviceRow(bluetoothController: self.bluetoothController, device: device)
+                DeviceRowView(bluetoothController: self.bluetoothController, device: device)
             }.navigationBarTitle(Text("Devices"))
         }
     }

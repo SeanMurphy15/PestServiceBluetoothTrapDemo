@@ -9,10 +9,10 @@
 import SwiftUI
 import BellSensingBLE
 
-struct DeviceRow : View {
+struct DeviceRowView : View {
 
     @ObservedObject var bluetoothController : BluetoothController
-    var device: BeaconData
+    @ObservedObject var device: BeaconData
 
     var body: some View {
         return NavigationLink(destination: DeviceDetailView(bluetoothController: bluetoothController, device: device)) {
