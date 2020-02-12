@@ -57,11 +57,8 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
                 if let existingDevice = self.storage.loadDevice(serial: discoveredDevice.serial) {
                     let updatedDevice = existingDevice.merging(discoveredDevice.toDictionary){(_, new) in new}
                     self.storage.saveDevice(data: updatedDevice, serial: discoveredDevice.serial)
-                } else {
-                    self.storage.saveDevice(data: discoveredDevice.toDictionary, serial: discoveredDevice.serial)
                 }
             }
-
         }
 
         deviceScanner.startScan { (beaconData) in
@@ -79,10 +76,18 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
 
         let deviceActivation = deviceScanner.activateDevice(serial: beaconData.serial, siteId: storage.siteId, key: beaconData.activationKey)
 
-        if beaconData.isActivated == false {
+        if beaconData.isActivated == false && deviceActivation.result == true {
+
+            storage.saveDevice(data: beaconData.toDictionary, serial: beaconData.serial)
+            storage.updateDeviceActivation(deviceActivation: deviceActivation, serial: beaconData.serial)
             storage.updateDeviceActivationStatus(result: deviceActivation.result, serial: beaconData.serial)
+
+        } else {
+
+            storage.updateDeviceActivation(deviceActivation: deviceActivation, serial: beaconData.serial)
+
         }
-        storage.updateDeviceActivation(deviceActivation: deviceActivation, serial: beaconData.serial)
+
 
         StorageController.shared.printDeviceCache(serial: beaconData.serial)
 
