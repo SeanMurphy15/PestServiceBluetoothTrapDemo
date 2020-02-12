@@ -96,10 +96,10 @@ class StorageController {
 
     func updateDeviceActivation(deviceActivation: DeviceActivation, serial: String){
 
-        guard var device = self.loadDevice(serial: serial) else { return }
+        guard let device = self.loadDevice(serial: serial) else { return }
+        let updatedDevice = device.merging(deviceActivation.toDictionary){(_, new) in new}
 
-        device["deviceActivation"] = deviceActivation.toDictionary
-        self.saveDevice(data: device, serial: serial)
+        self.saveDevice(data: updatedDevice, serial: serial)
     }
     
     func loadDeviceKey(serial: String) -> [String : Any]? {
@@ -206,8 +206,6 @@ class StorageController {
 
         let cache = siteCache()
 
-        print("ALL ACTIVATION AND DEVICE KEYS -> \(String(describing: cache.object(forKey: "activationAndDeviceKeys")))")
-
         if serial == nil {
             var deviceArray : [[String : Any]] = []
             for serial in currentSerials {
@@ -220,6 +218,12 @@ class StorageController {
             guard let device = loadDevice(serial: serial!), let serial = serial else { return }
             print("DEVICE DATA FOR \(serial) -> \(device)")
         }
+
+    }
+
+    func printActivatioAndDeviceKeyCache() {
+
+        print("ALL ACTIVATION AND DEVICE KEYS -> \(String(describing: siteCache().object(forKey: "activationAndDeviceKeys")))")
 
     }
     
