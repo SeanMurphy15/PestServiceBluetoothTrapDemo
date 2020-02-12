@@ -17,7 +17,7 @@ extension BeaconData : Identifiable, ObservableObject  {
     }
 
     var isActivated : Bool {
-        return StorageController.shared.loadDeviceActiveStatus(serial: self.serial)
+        return StorageController.shared.loadDeviceActivationStatus(serial: self.serial)
     }
 
     var activationKey : String {

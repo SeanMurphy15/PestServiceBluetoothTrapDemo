@@ -10,6 +10,7 @@
 		D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279ED823EBF984004F1E07 /* StorageController.swift */; };
 		D4279EDB23ECBCE0004F1E07 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279EDA23ECBCE0004F1E07 /* NetworkService.swift */; };
 		D4279EDF23ECDEEF004F1E07 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279EDE23ECDEEF004F1E07 /* NetworkController.swift */; };
+		D46A2FAD23F49EDB00A8CB3D /* DeviceActivationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A2FAC23F49EDB00A8CB3D /* DeviceActivationExtensions.swift */; };
 		D4AA361B23EA02ED009D963E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361A23EA02ED009D963E /* AppDelegate.swift */; };
 		D4AA361D23EA02ED009D963E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361C23EA02ED009D963E /* SceneDelegate.swift */; };
 		D4AA361F23EA02ED009D963E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361E23EA02ED009D963E /* ContentView.swift */; };
@@ -43,6 +44,7 @@
 		D4279ED823EBF984004F1E07 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		D4279EDA23ECBCE0004F1E07 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		D4279EDE23ECDEEF004F1E07 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		D46A2FAC23F49EDB00A8CB3D /* DeviceActivationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivationExtensions.swift; sourceTree = "<group>"; };
 		D4AA361723EA02ED009D963E /* PestServiceBluetoothTrapDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PestServiceBluetoothTrapDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AA361A23EA02ED009D963E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4AA361C23EA02ED009D963E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 			children = (
 				D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */,
 				D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */,
+				D46A2FAC23F49EDB00A8CB3D /* DeviceActivationExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */,
 				D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */,
 				D4E14AB123ED16A600382BAF /* BeaconDataExtensions.swift in Sources */,
+				D46A2FAD23F49EDB00A8CB3D /* DeviceActivationExtensions.swift in Sources */,
 				D4E575FB23EDEA3800857F1F /* DeviceRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

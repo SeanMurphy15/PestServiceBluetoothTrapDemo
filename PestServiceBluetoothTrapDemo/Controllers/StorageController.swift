@@ -56,7 +56,13 @@ class StorageController {
     }
 
     func loadDevice(serial: String) -> [String : Any]?{
-        return siteCache().dictionary(forKey: serial)
+
+        if let device = siteCache().dictionary(forKey: serial) {
+            return device
+        } else {
+            print("Device not found in storage")
+            return nil
+        }
     }
 
     func updateDeviceActivationStatus(result: Bool, serial: String) {
@@ -86,6 +92,14 @@ class StorageController {
         device["deviceEvents"] = deviceEvents
         self.saveDevice(data: device, serial: serial)
 
+    }
+
+    func updateDeviceActivation(deviceActivation: DeviceActivation, serial: String){
+
+        guard var device = self.loadDevice(serial: serial) else { return }
+
+        device["deviceActivation"] = deviceActivation.toDictionary
+        self.saveDevice(data: device, serial: serial)
     }
     
     func loadDeviceKey(serial: String) -> [String : Any]? {
@@ -188,19 +202,25 @@ class StorageController {
         return accessToken
     }
     
-    func printDeviceCache() {
+    func printDeviceCache(serial: String? = nil) {
 
         let cache = siteCache()
 
-        print("ACTIVATION AND DEVICE KEYS -> \(String(describing: cache.object(forKey: "activationAndDeviceKeys")))")
+        print("ALL ACTIVATION AND DEVICE KEYS -> \(String(describing: cache.object(forKey: "activationAndDeviceKeys")))")
 
-        var deviceArray : [[String : Any]] = []
-        for serial in currentSerials {
-            if let device = cache.object(forKey: serial) as? [String : Any] {
-                deviceArray.append(device)
+        if serial == nil {
+            var deviceArray : [[String : Any]] = []
+            for serial in currentSerials {
+                if let device = cache.object(forKey: serial) as? [String : Any] {
+                    deviceArray.append(device)
+                }
             }
+            print("ALL CURRENT DEVICES -> \(deviceArray)")
+        } else {
+            guard let device = loadDevice(serial: serial!), let serial = serial else { return }
+            print("DEVICE DATA FOR \(serial) -> \(device)")
         }
-        print("CURRENT DEVICES -> \(deviceArray)")
+
     }
     
     func printAuthCache() {

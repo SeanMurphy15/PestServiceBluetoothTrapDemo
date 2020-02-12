@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/BellSensingBLE-Swift.h</key>
 		<data>
-		hjWBfZ6vHSRe+5rYrkYMM8xng0M=
+		hWliVLRc+4EXbLRy4OM0gbi9GMo=
 		</data>
 		<key>Headers/BellSensingBLE.h</key>
 		<data>
@@ -18,63 +18,43 @@
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/arm.swiftdoc</key>
 		<data>
-		5DtyP1pzaGOyojx8W97smSLxD7U=
-		</data>
-		<key>Modules/BellSensingBLE.swiftmodule/arm.swiftinterface</key>
-		<data>
-		5LIFdL4EnMx3NlF/4j3LP4oABxU=
+		FkllcGGjYyRxYeAxFR0+rxfzDAc=
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/arm.swiftmodule</key>
 		<data>
-		zEodPzhcjgBZUFtnd52xWbnSGJc=
+		vFBCLF19E28SyQGoDePIRjhUlBw=
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<data>
-		2obGl4lxpr8WJM7Eza+c2+3zzu0=
-		</data>
-		<key>Modules/BellSensingBLE.swiftmodule/arm64-apple-ios.swiftinterface</key>
-		<data>
-		tIPS58iEcEVRoTmqCISpIA4qcx8=
+		pT53p/SZnK7tEZxe1ePG8X7GFd4=
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<data>
-		WYMkrBkttd+cFABVus5XMlQWLls=
+		qejpYXjDvgcXUH7NaJoEy4DjD+w=
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/arm64.swiftdoc</key>
 		<data>
-		2obGl4lxpr8WJM7Eza+c2+3zzu0=
-		</data>
-		<key>Modules/BellSensingBLE.swiftmodule/arm64.swiftinterface</key>
-		<data>
-		tIPS58iEcEVRoTmqCISpIA4qcx8=
+		pT53p/SZnK7tEZxe1ePG8X7GFd4=
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		WYMkrBkttd+cFABVus5XMlQWLls=
+		qejpYXjDvgcXUH7NaJoEy4DjD+w=
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/armv7-apple-ios.swiftdoc</key>
 		<data>
-		5DtyP1pzaGOyojx8W97smSLxD7U=
-		</data>
-		<key>Modules/BellSensingBLE.swiftmodule/armv7-apple-ios.swiftinterface</key>
-		<data>
-		5LIFdL4EnMx3NlF/4j3LP4oABxU=
+		FkllcGGjYyRxYeAxFR0+rxfzDAc=
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/armv7-apple-ios.swiftmodule</key>
 		<data>
-		zEodPzhcjgBZUFtnd52xWbnSGJc=
+		vFBCLF19E28SyQGoDePIRjhUlBw=
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/armv7.swiftdoc</key>
 		<data>
-		5DtyP1pzaGOyojx8W97smSLxD7U=
-		</data>
-		<key>Modules/BellSensingBLE.swiftmodule/armv7.swiftinterface</key>
-		<data>
-		5LIFdL4EnMx3NlF/4j3LP4oABxU=
+		FkllcGGjYyRxYeAxFR0+rxfzDAc=
 		</data>
 		<key>Modules/BellSensingBLE.swiftmodule/armv7.swiftmodule</key>
 		<data>
-		zEodPzhcjgBZUFtnd52xWbnSGJc=
+		vFBCLF19E28SyQGoDePIRjhUlBw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -87,11 +67,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			hjWBfZ6vHSRe+5rYrkYMM8xng0M=
+			hWliVLRc+4EXbLRy4OM0gbi9GMo=
 			</data>
 			<key>hash2</key>
 			<data>
-			t3JIYuMxQkp8UKCrSIIOzTZL08eEI0mGgrYGT+MIphA=
+			9gMFED0GqW8lJpamV+4771jJn8kCeZORNOGNDIV0EK4=
 			</data>
 		</dict>
 		<key>Headers/BellSensingBLE.h</key>
@@ -109,165 +89,110 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5DtyP1pzaGOyojx8W97smSLxD7U=
+			FkllcGGjYyRxYeAxFR0+rxfzDAc=
 			</data>
 			<key>hash2</key>
 			<data>
-			oktaeaTAQl3Ne/ZyZ8lIpBo9LX3zF2pSAhG6xK3M5rQ=
-			</data>
-		</dict>
-		<key>Modules/BellSensingBLE.swiftmodule/arm.swiftinterface</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5LIFdL4EnMx3NlF/4j3LP4oABxU=
-			</data>
-			<key>hash2</key>
-			<data>
-			M2zDNvX2wQ9Zl4PbQ6S8Jk9LR4ZPLmvl4oRKdcY7zjg=
+			rK+LDEv62XAFj+vLU/oNQbf+59v+oHoTmSiIoTxyrXI=
 			</data>
 		</dict>
 		<key>Modules/BellSensingBLE.swiftmodule/arm.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zEodPzhcjgBZUFtnd52xWbnSGJc=
+			vFBCLF19E28SyQGoDePIRjhUlBw=
 			</data>
 			<key>hash2</key>
 			<data>
-			7XzVknkq7LVCTyhJzP+5pQfSmrd7Jlsbm6svQs5H8eU=
+			vrwxoDenyyBtDpIikAgfU26dqXkvflrwlQBTS7DT2tQ=
 			</data>
 		</dict>
 		<key>Modules/BellSensingBLE.swiftmodule/arm64-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2obGl4lxpr8WJM7Eza+c2+3zzu0=
+			pT53p/SZnK7tEZxe1ePG8X7GFd4=
 			</data>
 			<key>hash2</key>
 			<data>
-			2MpVNYBlam5EEZPPuPK8wB8LQUZ95Z0XXM6IEECu480=
-			</data>
-		</dict>
-		<key>Modules/BellSensingBLE.swiftmodule/arm64-apple-ios.swiftinterface</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			tIPS58iEcEVRoTmqCISpIA4qcx8=
-			</data>
-			<key>hash2</key>
-			<data>
-			PA82+UK4ZiJjcpvD3XhyssQwN6z8o1/0fGe/OszEXBY=
+			pQcgXuBD2cQF8rv3qo+Qu8EXkmh5ubGFTEQzDBCnazM=
 			</data>
 		</dict>
 		<key>Modules/BellSensingBLE.swiftmodule/arm64-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			WYMkrBkttd+cFABVus5XMlQWLls=
+			qejpYXjDvgcXUH7NaJoEy4DjD+w=
 			</data>
 			<key>hash2</key>
 			<data>
-			zobIM/OmGLad8irdpC2wob6CiI60SXGbAL5LQlSmch8=
+			Gsn5a8IKxxwaRW7b3OQvq6gLzyRzgVdEEE9oHfTy53U=
 			</data>
 		</dict>
 		<key>Modules/BellSensingBLE.swiftmodule/arm64.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2obGl4lxpr8WJM7Eza+c2+3zzu0=
+			pT53p/SZnK7tEZxe1ePG8X7GFd4=
 			</data>
 			<key>hash2</key>
 			<data>
-			2MpVNYBlam5EEZPPuPK8wB8LQUZ95Z0XXM6IEECu480=
-			</data>
-		</dict>
-		<key>Modules/BellSensingBLE.swiftmodule/arm64.swiftinterface</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			tIPS58iEcEVRoTmqCISpIA4qcx8=
-			</data>
-			<key>hash2</key>
-			<data>
-			PA82+UK4ZiJjcpvD3XhyssQwN6z8o1/0fGe/OszEXBY=
+			pQcgXuBD2cQF8rv3qo+Qu8EXkmh5ubGFTEQzDBCnazM=
 			</data>
 		</dict>
 		<key>Modules/BellSensingBLE.swiftmodule/arm64.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			WYMkrBkttd+cFABVus5XMlQWLls=
+			qejpYXjDvgcXUH7NaJoEy4DjD+w=
 			</data>
 			<key>hash2</key>
 			<data>
-			zobIM/OmGLad8irdpC2wob6CiI60SXGbAL5LQlSmch8=
+			Gsn5a8IKxxwaRW7b3OQvq6gLzyRzgVdEEE9oHfTy53U=
 			</data>
 		</dict>
 		<key>Modules/BellSensingBLE.swiftmodule/armv7-apple-ios.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			5DtyP1pzaGOyojx8W97smSLxD7U=
+			FkllcGGjYyRxYeAxFR0+rxfzDAc=
 			</data>
 			<key>hash2</key>
 			<data>
-			oktaeaTAQl3Ne/ZyZ8lIpBo9LX3zF2pSAhG6xK3M5rQ=
-			</data>
-		</dict>
-		<key>Modules/BellSensingBLE.swiftmodule/armv7-apple-ios.swiftinterface</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5LIFdL4EnMx3NlF/4j3LP4oABxU=
-			</data>
-			<key>hash2</key>
-			<data>
-			M2zDNvX2wQ9Zl4PbQ6S8Jk9LR4ZPLmvl4oRKdcY7zjg=
+			rK+LDEv62XAFj+vLU/oNQbf+59v+oHoTmSiIoTxyrXI=
 			</data>
 		</dict>
 		<key>Modules/BellSensingBLE.swiftmodule/armv7-apple-ios.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zEodPzhcjgBZUFtnd52xWbnSGJc=
+			vFBCLF19E28SyQGoDePIRjhUlBw=
 			</data>
 			<key>hash2</key>
 			<data>
-			7XzVknkq7LVCTyhJzP+5pQfSmrd7Jlsbm6svQs5H8eU=
+			vrwxoDenyyBtDpIikAgfU26dqXkvflrwlQBTS7DT2tQ=
 			</data>
 		</dict>
 		<key>Modules/BellSensingBLE.swiftmodule/armv7.swiftdoc</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			5DtyP1pzaGOyojx8W97smSLxD7U=
+			FkllcGGjYyRxYeAxFR0+rxfzDAc=
 			</data>
 			<key>hash2</key>
 			<data>
-			oktaeaTAQl3Ne/ZyZ8lIpBo9LX3zF2pSAhG6xK3M5rQ=
-			</data>
-		</dict>
-		<key>Modules/BellSensingBLE.swiftmodule/armv7.swiftinterface</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			5LIFdL4EnMx3NlF/4j3LP4oABxU=
-			</data>
-			<key>hash2</key>
-			<data>
-			M2zDNvX2wQ9Zl4PbQ6S8Jk9LR4ZPLmvl4oRKdcY7zjg=
+			rK+LDEv62XAFj+vLU/oNQbf+59v+oHoTmSiIoTxyrXI=
 			</data>
 		</dict>
 		<key>Modules/BellSensingBLE.swiftmodule/armv7.swiftmodule</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			zEodPzhcjgBZUFtnd52xWbnSGJc=
+			vFBCLF19E28SyQGoDePIRjhUlBw=
 			</data>
 			<key>hash2</key>
 			<data>
-			7XzVknkq7LVCTyhJzP+5pQfSmrd7Jlsbm6svQs5H8eU=
+			vrwxoDenyyBtDpIikAgfU26dqXkvflrwlQBTS7DT2tQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

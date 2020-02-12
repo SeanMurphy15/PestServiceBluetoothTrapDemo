@@ -398,6 +398,12 @@ SWIFT_CLASS("_TtC14BellSensingBLE16BluetoothManager")
 @end
 
 
+SWIFT_CLASS("_TtC14BellSensingBLE16DeviceActivation")
+@interface DeviceActivation : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+
 SWIFT_CLASS("_TtC14BellSensingBLE15DeviceDetection")
 @interface DeviceDetection : NSObject
 - (nonnull instancetype)init SWIFT_UNAVAILABLE;
@@ -846,6 +852,12 @@ SWIFT_CLASS("_TtC14BellSensingBLE16BluetoothManager")
 /// \param error The error message
 ///
 - (void)peripheral:(CBPeripheral * _Nonnull)peripheral didWriteValueForCharacteristic:(CBCharacteristic * _Nonnull)characteristic error:(NSError * _Nullable)error;
+@end
+
+
+SWIFT_CLASS("_TtC14BellSensingBLE16DeviceActivation")
+@interface DeviceActivation : NSObject
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
 

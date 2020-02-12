@@ -47,9 +47,11 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
         }
     }
 
+    
+
     func startScan() {
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
             self.deviceScanner.endScan()
             for discoveredDevice in self.discoveredDevices {
                 if let existingDevice = self.storage.loadDevice(serial: discoveredDevice.serial) {
@@ -59,6 +61,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
                     self.storage.saveDevice(data: discoveredDevice.toDictionary, serial: discoveredDevice.serial)
                 }
             }
+
         }
 
         deviceScanner.startScan { (beaconData) in
@@ -73,17 +76,15 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
 
     func activateDevice(beaconData: BeaconData){
 
-        if beaconData.isActivated { return }
 
-        let result = deviceScanner.activateDevice(serial: beaconData.serial, siteId: storage.siteId, key: beaconData.activationKey)
+        let deviceActivation = deviceScanner.activateDevice(serial: beaconData.serial, siteId: storage.siteId, key: beaconData.activationKey)
 
-        storage.updateDeviceActivationStatus(result: result, serial: beaconData.serial)
+        if beaconData.isActivated == false {
+            storage.updateDeviceActivationStatus(result: deviceActivation.result, serial: beaconData.serial)
+        }
+        storage.updateDeviceActivation(deviceActivation: deviceActivation, serial: beaconData.serial)
 
-//        if let value = result as? Bool {
-//            storage.updateDeviceActivationStatus(result: result, serial: beaconData.serial)
-//        } else if let value = result as? DeviceActivation {
-//            // save new DeviceActivation object
-//        }
+        StorageController.shared.printDeviceCache(serial: beaconData.serial)
 
     }
 
@@ -105,4 +106,16 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
     }
 
 
+}
+
+extension DeviceActivation {
+
+    var toDictionary : [String : Any] {
+        let mirror = Mirror(reflecting: self)
+        let variableList: [(String, Any)] = mirror.children.compactMap {
+            guard let label = $0.label else { return nil }
+            return (label, $0.value)
+        }
+        return Dictionary(uniqueKeysWithValues: variableList)
+    }
 }
