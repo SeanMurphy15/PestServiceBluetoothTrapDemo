@@ -34,21 +34,25 @@ class NetworkController {
         }
     }
 
+    func postVisit() {
+
+        NetworkService.shared.postVisit { (isSuccess, message) in
+            if isSuccess {
+                print(message)
+
+            } else {
+                print(message)
+            }
+        }
+    }
+
     func getVersion() {
 
         NetworkService.shared.getVersion { (isSuccess, message) in
 
             if isSuccess {
                 print(message)
-                NetworkService.shared.postVisit { (isSuccess, message) in
-                    if isSuccess {
-                        print(message)
 
-                    } else {
-                        print(message)
-
-                    }
-                }
             } else {
                 print(message)
             }

@@ -214,11 +214,12 @@ class StorageController {
         for serial in currentSerials {
             if let device = cache.object(forKey: serial) as? [String : Any] {
                 var object : [String : Any] = [:]
+                print("DEVICE -> <<<<<\(deviceObjectArray)>>>>>")
 
                 object["Serial"] = device["serial"]
                 object["HardwareVersion"] = device["hardwareVersion"]
                 object["FirmwareVersion"] = device["firmwareVersion"]
-                object["DeviceModel"] = device["deviceModel"]
+                object["DeviceModel"] = device["model"]
                 object["Seed"] = device["seed"]
                 object["Date"] = formattedDate(date: Date())
                 object["Temperature"] = device["temperature"]
