@@ -106,7 +106,7 @@ class StorageController {
         self.saveDevice(data: updatedDevice, serial: serial)
     }
     
-    func loadDeviceKey(serial: String) -> [String : Any]? {
+    func loadDeviceKey(serial: String) -> String? {
         
         guard let adKeys = siteCache().dictionary(forKey: "activationAndDeviceKeys") else {
             print("Activation and device keys not found in storage")
@@ -123,19 +123,20 @@ class StorageController {
             return nil
         }
         
-        var result : [String : Any]? = nil
-        
+        var result : String = ""
+
         for deviceKey in deviceKeys {
-            if let ds = deviceKey["serial"] as? String {
-                if serial == ds {
-                    result = deviceKey
-                }
+            guard let ds = deviceKey["Serial"] as? String,
+                let dk = deviceKey["Key"] as? String else {
+                    return nil
             }
-            
+            if serial == ds {
+                result = dk
+            }
         }
-        if result == nil {
-            print("Device key not found for serial")
-        }
+
+        if result == nil { print("Device key not found for serial") }
+
         return result
     }
     

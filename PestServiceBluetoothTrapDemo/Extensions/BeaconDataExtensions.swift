@@ -24,6 +24,10 @@ extension BeaconData : Identifiable, ObservableObject  {
         return StorageController.shared.loadDeviceActivationKey(model: Int(self.model))
     }
 
+    var deviceKey : String? {
+        return StorageController.shared.loadDeviceKey(serial: self.serial)
+    }
+
     var batteryPercentage : String {
         return String(battery) + "%"
     }
