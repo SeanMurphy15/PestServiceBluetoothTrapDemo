@@ -51,7 +51,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
 
     func startScan() {
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 15) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             self.deviceScanner.endScan()
             for discoveredDevice in self.discoveredDevices {
                 if let existingDevice = self.storage.loadDevice(serial: discoveredDevice.serial) {
@@ -59,6 +59,8 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
                     self.storage.saveDevice(data: updatedDevice, serial: discoveredDevice.serial)
                 }
             }
+
+            self.storage.loadFormattedDevicesForVisit()
         }
 
         deviceScanner.startScan { (beaconData) in
@@ -89,7 +91,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate,
         }
 
 
-        StorageController.shared.printDeviceCache(serial: beaconData.serial)
+      //  StorageController.shared.printDeviceCache(serial: beaconData.serial)
 
     }
 

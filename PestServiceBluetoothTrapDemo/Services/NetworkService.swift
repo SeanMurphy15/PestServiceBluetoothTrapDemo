@@ -139,7 +139,65 @@ class NetworkService {
         }
         task.resume()
     }
+
+    func postVisit(completion: @escaping (_ isSuccess: Bool, _ message: String)-> Void) {
+
+        let services = StorageController.shared.loadFormattedDevicesForVisit()!
+        let endpoint = "https://smartwave-smart-trap-sdk-dev.azurewebsites.net/api/Visit"
+        let url = URL(string: endpoint)!
+        var request = URLRequest(url: url)
+
+      let body = [
+        [
+          "SiteId": "96b3b257-afcc-482d-aea7-a069f5329934",
+          "UserId": "06cb0dc9-1e48-4d52-bb30-dfe512b0bf6d",
+          "Services": services,
+          "Reference": "some reference"
+        ]
+      ]
+
+        let data = try! JSONSerialization.data(withJSONObject: body, options: [])
+        let r = try! JSONSerialization.jsonObject(with: data, options: []) as? [[String : Any]]
+        print("REQUEST -> <<<<\(r)>>>>")
+        let accessToken = StorageController.shared.loadAccessToken()
+        request.httpMethod = "POST"
+        request.httpBody = data
+        request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        let task = URLSession.shared.dataTask(with: request) {
+            data, response, error in
+
+            if let error = error {
+                completion(false, "\(#function) failed with error: \(error.localizedDescription)")
+            } else {
+
+                var result : [String : Any]?
+
+                do {
+                    result = try JSONSerialization.jsonObject(with: data!, options: []) as? [String: Any]
+                } catch let error as NSError {
+                    completion(false, "\(#function) JSONSerialization failed to load: \(error.localizedDescription)")
+                }
+
+                if let httpUrlResponse = response as? HTTPURLResponse {
+                    switch httpUrlResponse.statusCode {
+                    case 200:
+                        StorageController.shared.saveVersion(data: result)
+                        completion(true, "\(#function) retreived successfully with status code: \(httpUrlResponse.statusCode)")
+                    default:
+                        completion(false, "\(#function) failed with status code: \(httpUrlResponse.statusCode)")
+
+                    }
+                    print(" \(#function) result: \(result ?? ["":""])")
+                } else {
+                    completion(false, "\(#function) failed to convert response to HTTPURLResponse")
+                }
+            }
+        }
+        task.resume()
+    }
 }
+
 
 
 

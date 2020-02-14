@@ -82,14 +82,18 @@ class StorageController {
 
         guard var device = self.loadDevice(serial: serial) else { return }
         var deviceEvents : [[String : Any]] = []
+        var deviceDetections : [[String : Any]] = []
+
         for deviceEvent in events {
             let detectionDictArray = deviceEvent.detections.map({$0.toDictionary})
             let eventDict : [String : Any] = ["start" : deviceEvent.start,
-                                              "end" : deviceEvent.end,
-                                              "detections": detectionDictArray]
+                                              "end" : deviceEvent.end ]
+            deviceDetections.append(contentsOf: detectionDictArray)
             deviceEvents.append(eventDict)
         }
         device["deviceEvents"] = deviceEvents
+        // making detections shallow in the device tree for easier Visit POST access
+        device["detections"] = deviceDetections
         self.saveDevice(data: device, serial: serial)
 
     }
@@ -201,7 +205,68 @@ class StorageController {
         }
         return accessToken
     }
-    
+
+    func loadFormattedDevicesForVisit() -> [[String : Any]]?{
+
+        let cache = siteCache()
+
+        var deviceObjectArray : [[String : Any]] = []
+        for serial in currentSerials {
+            if let device = cache.object(forKey: serial) as? [String : Any] {
+                var object : [String : Any] = [:]
+
+                object["Serial"] = device["serial"]
+                object["HardwareVersion"] = device["hardwareVersion"]
+                object["FirmwareVersion"] = device["firmwareVersion"]
+                object["DeviceModel"] = device["deviceModel"]
+                object["Seed"] = device["seed"]
+                object["Date"] = formattedDate(date: Date())
+                object["Temperature"] = device["temperature"]
+                object["Battery"] = device["battery"]
+                object["Detections"] = formattedDetections(device)
+                object["Location"] = [
+                  "Latitude": 34.055569,
+                  "Longitude": -117.182541,
+                  "Accuracy": 1,
+                  "Date": StorageController.shared.formattedDate(date: Date())
+                ]
+
+                deviceObjectArray.append(object)
+            }
+        }
+
+        print("SERVICE OBJECTS -> <<<<<\(deviceObjectArray)>>>>>")
+
+        return deviceObjectArray
+    }
+
+    fileprivate func formattedDetections(_ device: [String : Any]) -> [[String : Any]] {
+
+        guard let detectionsObject = device["detections"],
+            let detections = detectionsObject as? [[String : Any]]  else { return [] }
+
+        var formattedDetections : [[String : Any]] = []
+
+        for detection in detections {
+            guard let date = detection["time"] as? Date,
+                let sensorSignature = detection["signature"] else { return formattedDetections }
+            let formattedDetection = ["Date": formattedDate(date: date), "SensorSignature": sensorSignature]
+            formattedDetections.append(formattedDetection)
+        }
+
+        return formattedDetections
+    }
+
+     func formattedDate(date : Date) -> String {
+
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        let formattedDate = formatter.string(from: date)
+        print(formattedDate)
+        return formattedDate
+    }
+
     func printDeviceCache(serial: String? = nil) {
 
         let cache = siteCache()
@@ -217,6 +282,7 @@ class StorageController {
         } else {
             guard let device = loadDevice(serial: serial!), let serial = serial else { return }
             print("DEVICE DATA FOR \(serial) -> \(device)")
+
         }
 
     }
@@ -234,3 +300,45 @@ class StorageController {
     }
     
 }
+
+
+//        request.httpBody = [
+//          [
+//            "SiteId": "string",
+//            "UserId": "string",
+//            "Services": [
+//              [
+//                "Serial": "string",
+//                "HardwareVersion": "string",
+//                "FirmwareVersion": "string",
+//                "DeviceModel": 0,
+//                "Seed": "string",
+//                "Date": "2020-02-13T19:03:04.689Z",
+//                "Temperature": 0,
+//                "Battery": 0,
+//                "Detections": [
+//                  [
+//                    "Date": "2020-02-13T19:03:04.689Z",
+//                    "SensorSignature": "string"
+//                  ]
+//                ],
+//                "Location": [
+//                  "Latitude": 0,
+//                  "Longitude": 0,
+//                  "Accuracy": 0,
+//                  "Date": "2020-02-13T19:03:04.689Z"
+//                ],
+//                "Captures": [
+//                  [
+//                    "Type": "Vole",
+//                    "Sex": "AdultM",
+//                    "Count": 0
+//                  ]
+//                ],
+//                "BaitUsed": 0,
+//                "BaitType": "string"
+//              ]
+//            ],
+//            "Reference": "string"
+//          ]
+//        ]
