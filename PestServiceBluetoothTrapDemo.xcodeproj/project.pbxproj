@@ -27,6 +27,7 @@
 		D4E14AB123ED16A600382BAF /* BeaconDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */; };
 		D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */; };
 		D4E562DD23FBBC7F00A14415 /* ServiceDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E562DC23FBBC7F00A14415 /* ServiceDeviceView.swift */; };
+		D4E562DF23FC584A00A14415 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E562DE23FC584A00A14415 /* BarChartView.swift */; };
 		D4E575FB23EDEA3800857F1F /* DeviceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E575FA23EDEA3800857F1F /* DeviceRowView.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +67,7 @@
 		D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconDataExtensions.swift; sourceTree = "<group>"; };
 		D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetectionExtensions.swift; sourceTree = "<group>"; };
 		D4E562DC23FBBC7F00A14415 /* ServiceDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDeviceView.swift; sourceTree = "<group>"; };
+		D4E562DE23FC584A00A14415 /* BarChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartView.swift; sourceTree = "<group>"; };
 		D4E575FA23EDEA3800857F1F /* DeviceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -126,6 +128,7 @@
 				D4AA361E23EA02ED009D963E /* DeviceListView.swift */,
 				D4E575FA23EDEA3800857F1F /* DeviceRowView.swift */,
 				D4AA363923EA3F53009D963E /* DeviceDetailView.swift */,
+				D4E562DE23FC584A00A14415 /* BarChartView.swift */,
 				D4E562DC23FBBC7F00A14415 /* ServiceDeviceView.swift */,
 				D4AA362023EA02EE009D963E /* Assets.xcassets */,
 				D4AA362523EA02EE009D963E /* LaunchScreen.storyboard */,
@@ -252,6 +255,7 @@
 				D4BCFBAA23FB14A60033C405 /* SiteDetailView.swift in Sources */,
 				D4279EDB23ECBCE0004F1E07 /* NetworkService.swift in Sources */,
 				D4AA362F23EA0357009D963E /* BluetoothController.swift in Sources */,
+				D4E562DF23FC584A00A14415 /* BarChartView.swift in Sources */,
 				D4BCFBAE23FBA0EF0033C405 /* ActivateDeviceView.swift in Sources */,
 				D4AA361F23EA02ED009D963E /* DeviceListView.swift in Sources */,
 				D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */,

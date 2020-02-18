@@ -19,50 +19,55 @@ struct SiteDetailView: View {
     var body: some View {
 
         NavigationView {
-        List {
-            Section(header: Text("Site Info")) {
-                HStack {
-                    Text("Discovered Devices")
-                    Spacer()
-                    NavigationLink(destination: DeviceListView(bluetoothController: bluetoothController), label: {
-                        Text("")
-                    })
-                }.font(.headline)
+
+            VStack {
+                Text("Magenic")
             }
-            Section(header: Text("Actions")) {
-                HStack {
-                    Text("Add Device")
-                    Spacer()
-                    Button(action: {
-                        print("Edit button was tapped")
-                    }) {
-                        Image(systemName: "plus.circle")
-                    }
-                }.font(.headline)
-                HStack {
-                    Text("Remove Device")
-                    Spacer()
-                    Button(action: {
-                        print("Edit button was tapped")
-                    }) {
-                        Image(systemName: "minus.circle")
-                    }
-                }.font(.headline)
-                HStack {
-                    Text("Swap Device")
-                    Spacer()
-                    Button(action: {
-                        print("Edit button was tapped")
-                    }) {
-                        Image(systemName: "arrow.right.arrow.left.circle")
-                    }
-                }.font(.headline)
-            }
+            List {
+                Section(header: Text("Site Info")) {
+                    HStack {
+                        Text("Discovered Devices")
+                        Spacer()
+                        NavigationLink(destination: DeviceListView(bluetoothController: bluetoothController), label: {
+                            Text("")
+                        })
+                    }.font(.headline)
+                }
+                Section(header: Text("Actions")) {
+                    HStack {
+                        Text("Add Device")
+                        Spacer()
+                        Button(action: {
+                            print("Edit button was tapped")
+                        }) {
+                            Image(systemName: "plus.circle")
+                        }
+                    }.font(.headline)
+                    HStack {
+                        Text("Remove Device")
+                        Spacer()
+                        Button(action: {
+                            print("Edit button was tapped")
+                        }) {
+                            Image(systemName: "minus.circle")
+                        }
+                    }.font(.headline)
+                    HStack {
+                        Text("Swap Device")
+                        Spacer()
+                        Button(action: {
+                            print("Edit button was tapped")
+                        }) {
+                            Image(systemName: "arrow.right.arrow.left.circle")
+                        }
+                    }.font(.headline)
+                }
 
 
+            }
+            .navigationBarTitle(Text("Ecolab"), displayMode: .inline)
+            .listStyle(GroupedListStyle())
         }
-        .listStyle(GroupedListStyle())
-    }
     }
 }
 
