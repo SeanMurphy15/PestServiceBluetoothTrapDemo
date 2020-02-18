@@ -12,31 +12,26 @@ import BellSensingBLE
 struct DeviceListView: View {
     
     @ObservedObject var bluetoothController : BluetoothController
-    
+
     var body: some View {
         List {
-            Section(header: Text("Registered")) {
-                ForEach(bluetoothController.registeredDevices) { device in
-                    DeviceRowView(bluetoothController: self.bluetoothController, device: device)
-                    
+            if bluetoothController.registeredDevices.count > 0 {
+                Section(header: Text("Registered")) {
+                    ForEach(bluetoothController.registeredDevices) { device in
+                        DeviceRowView(bluetoothController: self.bluetoothController, device: device)
+
+                    }
                 }
             }
             if bluetoothController.unRegisteredDevices.count > 0 {
-            Section(header: Text("Unregistered")) {
-                ForEach(bluetoothController.unRegisteredDevices) { device in
-                    DeviceRowView(bluetoothController: self.bluetoothController, device: device)
-                    
+                Section(header: Text("Unregistered")) {
+                    ForEach(bluetoothController.unRegisteredDevices) { device in
+                        DeviceRowView(bluetoothController: self.bluetoothController, device: device)
+
+                    }
                 }
             }
-        }
         }.listStyle(GroupedListStyle())
-            .navigationBarTitle(Text("Devices"), displayMode: .inline)
-            .navigationBarItems(trailing:
-                Button(action: {
-                    self.bluetoothController.startScan()
-                }) {
-                    Text("Refresh")
-            })
     }
 }
 

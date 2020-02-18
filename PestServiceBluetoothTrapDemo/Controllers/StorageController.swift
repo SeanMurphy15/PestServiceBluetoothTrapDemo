@@ -105,7 +105,6 @@ class StorageController {
             deviceEvents.append(eventDict)
         }
         device["deviceEvents"] = deviceEvents
-        // making detections shallow in the device tree for easier Visit POST access
         device["detections"] = deviceDetections
         self.saveDevice(data: device, serial: serial)
 

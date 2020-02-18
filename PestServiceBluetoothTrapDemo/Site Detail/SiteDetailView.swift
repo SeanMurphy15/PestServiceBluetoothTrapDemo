@@ -20,52 +20,38 @@ struct SiteDetailView: View {
 
         NavigationView {
 
-            VStack {
-                Text("Magenic")
-            }
             List {
-                Section(header: Text("Site Info")) {
-                    HStack {
-                        Text("Discovered Devices")
-                        Spacer()
-                        NavigationLink(destination: DeviceListView(bluetoothController: bluetoothController), label: {
-                            Text("")
-                        })
+                Section(header: Text("Address")) {
+                    VStack(alignment: .leading) {
+                        Text("1 Ecolab Place, St. Paul")
+                        Text("MN 55102")
                     }.font(.headline)
                 }
-                Section(header: Text("Actions")) {
-                    HStack {
-                        Text("Add Device")
-                        Spacer()
-                        Button(action: {
-                            print("Edit button was tapped")
-                        }) {
-                            Image(systemName: "plus.circle")
-                        }
-                    }.font(.headline)
-                    HStack {
-                        Text("Remove Device")
-                        Spacer()
-                        Button(action: {
-                            print("Edit button was tapped")
-                        }) {
-                            Image(systemName: "minus.circle")
-                        }
-                    }.font(.headline)
-                    HStack {
-                        Text("Swap Device")
-                        Spacer()
-                        Button(action: {
-                            print("Edit button was tapped")
-                        }) {
-                            Image(systemName: "arrow.right.arrow.left.circle")
-                        }
-                    }.font(.headline)
-                }
+                if bluetoothController.registeredDevices.count > 0 {
+                    Section(header: Text("Registered")) {
+                        ForEach(bluetoothController.registeredDevices) { device in
+                            DeviceRowView(bluetoothController: self.bluetoothController, device: device)
 
+                        }
+                    }
+                }
+                if bluetoothController.unRegisteredDevices.count > 0 {
+                    Section(header: Text("Connectable")) {
+                        ForEach(bluetoothController.unRegisteredDevices) { device in
+                            DeviceRowView(bluetoothController: self.bluetoothController, device: device)
+
+                        }
+                    }
+                }
 
             }
             .navigationBarTitle(Text("Ecolab"), displayMode: .inline)
+            .navigationBarItems(trailing:
+                    Button(action: {
+                        self.bluetoothController.startScan()
+                    }) {
+                        Text("Refresh")
+                })
             .listStyle(GroupedListStyle())
         }
     }

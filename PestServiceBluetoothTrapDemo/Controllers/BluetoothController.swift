@@ -19,6 +19,13 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
     @Published var registeredDevices : [BeaconData] = []
     @Published var unRegisteredDevices : [BeaconData] = []
 
+    private var discoveredDevices : [BeaconData] = [] {
+        didSet {
+            self.registeredDevices = discoveredDevices.filter({$0.isRegistered == true})
+            self.unRegisteredDevices = discoveredDevices.filter({$0.isRegistered == false})
+        }
+    }
+
     private var centralManager: CBCentralManager!
     private var deviceScanner: DeviceScanner!
     private var storage : StorageController!
@@ -32,23 +39,18 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
 
     func startScan() {
 
-        var discoveredDevices : [BeaconData] = []
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             self.deviceScanner.endScan()
-            for discoveredDevice in discoveredDevices {
+            for discoveredDevice in self.discoveredDevices {
                 self.storage.updateRegisteredDeviceAdvertisementData(beaconData: discoveredDevice)
             }
-
-            self.registeredDevices = discoveredDevices.filter({$0.isRegistered == true})
-            self.unRegisteredDevices = discoveredDevices.filter({$0.isRegistered == false})
         }
 
         deviceScanner.startScan { (beaconData) in
-            if let index = discoveredDevices.firstIndex(where: {$0.serial == beaconData.serial}) {
-                discoveredDevices[index] = beaconData
+            if let index = self.discoveredDevices.firstIndex(where: {$0.serial == beaconData.serial}) {
+                self.discoveredDevices[index] = beaconData
             } else {
-                discoveredDevices.append(beaconData)
+                self.discoveredDevices.append(beaconData)
             }
         }
 

@@ -19,18 +19,8 @@ struct DeviceRowView : View {
             VStack(alignment: .leading) {
                 Text(device.modelName).font(.headline)
                 Text("Serial: \(device.serial)").font(.subheadline)
-                HStack{
-                    if device.isActivated {
-                        Text("Activated").foregroundColor(.green)
-                    } else {
-                        Text("Not Activated").foregroundColor(.gray)
-                    }
-                    if device.isRegistered {
-                        Text("Registered").foregroundColor(.green)
-                    } else {
-                        Text("Not Registered").foregroundColor(.gray)
-                    }
-                }
+                Text("Battery: \(device.batteryPercentage)").font(.subheadline)
+                Text("RSSI: \(device.rssi)").font(.subheadline)
             }
         }
     }

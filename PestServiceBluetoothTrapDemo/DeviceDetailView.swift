@@ -45,8 +45,8 @@ struct DeviceDetailView: View {
     @State var showingDetail = false
 
     var body: some View {
+        
         VStack {
-
             List {
                 Section(header: Text("Activity")) {
                     HStack {
@@ -55,6 +55,58 @@ struct DeviceDetailView: View {
                             data: moveChartData)
                             .padding([.bottom], 25)
                     }
+                }
+                Section(header: Text("Events / Detections")) {
+
+                    HStack {
+                        Text("Events")
+                        Spacer()
+                        Text("\(device.eventsSinceLastService)")
+                    }
+                    HStack {
+                        Text("Detections")
+                        Spacer()
+                        Text("\(device.detectionsSinceLastService)")
+                    }
+                }
+                Section(header: Text("Actions")) {
+                    HStack {
+                        Text("Download Event Data")
+                        Spacer()
+                        Button(action: {
+                            print("Remove Device button was tapped")
+                        }) {
+                            Image(systemName: "arrow.down.circle")
+                        }.foregroundColor(Color.blue)
+                    }.font(.headline)
+                    HStack {
+                        Text("Clear Event Data")
+                        Spacer()
+                        Button(action: {
+                            print("Remove Device button was tapped")
+                        }) {
+                            Image(systemName: "arrow.clockwise.circle")
+                        }.foregroundColor(Color.blue)
+                    }.font(.headline)
+                    HStack {
+                        Text("Swap Device")
+                        Spacer()
+                        Button(action: {
+                            print("Swap Device button was tapped")
+                        }) {
+                            Image(systemName: "arrow.right.arrow.left.circle")
+                        }.foregroundColor(Color.blue)
+                    }.font(.headline)
+                    HStack {
+                        Text("Delete Device")
+                        Spacer()
+                        Button(action: {
+                            print("Remove Device button was tapped")
+                        }) {
+                            Image(systemName: "trash.circle")
+                        }.foregroundColor(Color.red)
+                    }.font(.headline)
+
                 }
                 Section(header: Text("Device Info")) {
                     HStack {
@@ -76,19 +128,6 @@ struct DeviceDetailView: View {
                         Text("Transmit Power")
                         Spacer()
                         Text("\(device.transmitPower)")
-                    }
-                }
-                Section(header: Text("Events / Detections")) {
-
-                    HStack {
-                        Text("Events")
-                        Spacer()
-                        Text("\(device.eventsSinceLastService)")
-                    }
-                    HStack {
-                        Text("Detections")
-                        Spacer()
-                        Text("\(device.detectionsSinceLastService)")
                     }
                 }
             }
