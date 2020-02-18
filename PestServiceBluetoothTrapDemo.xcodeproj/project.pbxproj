@@ -13,7 +13,7 @@
 		D46A2FAD23F49EDB00A8CB3D /* DeviceActivationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A2FAC23F49EDB00A8CB3D /* DeviceActivationExtensions.swift */; };
 		D4AA361B23EA02ED009D963E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361A23EA02ED009D963E /* AppDelegate.swift */; };
 		D4AA361D23EA02ED009D963E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361C23EA02ED009D963E /* SceneDelegate.swift */; };
-		D4AA361F23EA02ED009D963E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361E23EA02ED009D963E /* ContentView.swift */; };
+		D4AA361F23EA02ED009D963E /* DeviceListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361E23EA02ED009D963E /* DeviceListView.swift */; };
 		D4AA362123EA02EE009D963E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4AA362023EA02EE009D963E /* Assets.xcassets */; };
 		D4AA362423EA02EE009D963E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D4AA362323EA02EE009D963E /* Preview Assets.xcassets */; };
 		D4AA362723EA02EE009D963E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4AA362523EA02EE009D963E /* LaunchScreen.storyboard */; };
@@ -21,8 +21,12 @@
 		D4AA363623EA03FF009D963E /* BellSensingBLE.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4AA363523EA03FF009D963E /* BellSensingBLE.framework */; };
 		D4AA363723EA03FF009D963E /* BellSensingBLE.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4AA363523EA03FF009D963E /* BellSensingBLE.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4AA363A23EA3F53009D963E /* DeviceDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA363923EA3F53009D963E /* DeviceDetailView.swift */; };
+		D4BCFBAA23FB14A60033C405 /* SiteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCFBA923FB14A60033C405 /* SiteDetailView.swift */; };
+		D4BCFBAC23FB79E00033C405 /* SiteDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCFBAB23FB79E00033C405 /* SiteDetailViewModel.swift */; };
+		D4BCFBAE23FBA0EF0033C405 /* ActivateDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4BCFBAD23FBA0EF0033C405 /* ActivateDeviceView.swift */; };
 		D4E14AB123ED16A600382BAF /* BeaconDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */; };
 		D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */; };
+		D4E562DD23FBBC7F00A14415 /* ServiceDeviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E562DC23FBBC7F00A14415 /* ServiceDeviceView.swift */; };
 		D4E575FB23EDEA3800857F1F /* DeviceRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E575FA23EDEA3800857F1F /* DeviceRowView.swift */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +52,7 @@
 		D4AA361723EA02ED009D963E /* PestServiceBluetoothTrapDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PestServiceBluetoothTrapDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AA361A23EA02ED009D963E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D4AA361C23EA02ED009D963E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D4AA361E23EA02ED009D963E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D4AA361E23EA02ED009D963E /* DeviceListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceListView.swift; sourceTree = "<group>"; };
 		D4AA362023EA02EE009D963E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D4AA362323EA02EE009D963E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D4AA362623EA02EE009D963E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -56,8 +60,12 @@
 		D4AA362E23EA0357009D963E /* BluetoothController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluetoothController.swift; sourceTree = "<group>"; };
 		D4AA363523EA03FF009D963E /* BellSensingBLE.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BellSensingBLE.framework; path = PestServiceBluetoothTrapDemo/BellSensingBLE.framework; sourceTree = "<group>"; };
 		D4AA363923EA3F53009D963E /* DeviceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetailView.swift; sourceTree = "<group>"; };
+		D4BCFBA923FB14A60033C405 /* SiteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteDetailView.swift; sourceTree = "<group>"; };
+		D4BCFBAB23FB79E00033C405 /* SiteDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteDetailViewModel.swift; sourceTree = "<group>"; };
+		D4BCFBAD23FBA0EF0033C405 /* ActivateDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivateDeviceView.swift; sourceTree = "<group>"; };
 		D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeaconDataExtensions.swift; sourceTree = "<group>"; };
 		D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceDetectionExtensions.swift; sourceTree = "<group>"; };
+		D4E562DC23FBBC7F00A14415 /* ServiceDeviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDeviceView.swift; sourceTree = "<group>"; };
 		D4E575FA23EDEA3800857F1F /* DeviceRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceRowView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,9 +121,12 @@
 			children = (
 				D4AA361A23EA02ED009D963E /* AppDelegate.swift */,
 				D4AA361C23EA02ED009D963E /* SceneDelegate.swift */,
-				D4AA361E23EA02ED009D963E /* ContentView.swift */,
-				D4AA363923EA3F53009D963E /* DeviceDetailView.swift */,
+				D4BCFBAF23FBA69C0033C405 /* Site Detail */,
+				D4BCFBAD23FBA0EF0033C405 /* ActivateDeviceView.swift */,
+				D4AA361E23EA02ED009D963E /* DeviceListView.swift */,
 				D4E575FA23EDEA3800857F1F /* DeviceRowView.swift */,
+				D4AA363923EA3F53009D963E /* DeviceDetailView.swift */,
+				D4E562DC23FBBC7F00A14415 /* ServiceDeviceView.swift */,
 				D4AA362023EA02EE009D963E /* Assets.xcassets */,
 				D4AA362523EA02EE009D963E /* LaunchScreen.storyboard */,
 				D4AA362823EA02EE009D963E /* Info.plist */,
@@ -141,6 +152,15 @@
 				D4AA363523EA03FF009D963E /* BellSensingBLE.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4BCFBAF23FBA69C0033C405 /* Site Detail */ = {
+			isa = PBXGroup;
+			children = (
+				D4BCFBA923FB14A60033C405 /* SiteDetailView.swift */,
+				D4BCFBAB23FB79E00033C405 /* SiteDetailViewModel.swift */,
+			);
+			path = "Site Detail";
 			sourceTree = "<group>";
 		};
 		D4E14AAF23ECFA4B00382BAF /* Extensions */ = {
@@ -229,13 +249,17 @@
 				D4AA361B23EA02ED009D963E /* AppDelegate.swift in Sources */,
 				D4AA363A23EA3F53009D963E /* DeviceDetailView.swift in Sources */,
 				D4AA361D23EA02ED009D963E /* SceneDelegate.swift in Sources */,
+				D4BCFBAA23FB14A60033C405 /* SiteDetailView.swift in Sources */,
 				D4279EDB23ECBCE0004F1E07 /* NetworkService.swift in Sources */,
 				D4AA362F23EA0357009D963E /* BluetoothController.swift in Sources */,
-				D4AA361F23EA02ED009D963E /* ContentView.swift in Sources */,
+				D4BCFBAE23FBA0EF0033C405 /* ActivateDeviceView.swift in Sources */,
+				D4AA361F23EA02ED009D963E /* DeviceListView.swift in Sources */,
 				D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */,
 				D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */,
+				D4BCFBAC23FB79E00033C405 /* SiteDetailViewModel.swift in Sources */,
 				D4E14AB123ED16A600382BAF /* BeaconDataExtensions.swift in Sources */,
 				D46A2FAD23F49EDB00A8CB3D /* DeviceActivationExtensions.swift in Sources */,
+				D4E562DD23FBBC7F00A14415 /* ServiceDeviceView.swift in Sources */,
 				D4E575FB23EDEA3800857F1F /* DeviceRowView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

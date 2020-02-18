@@ -14,7 +14,6 @@ class StorageController {
     static let shared = StorageController()
 
     let siteId = UUID(uuidString: "96b3b257-afcc-482d-aea7-a069f5329934")!
-    var currentSerials : [String] = []
 
     func siteCache() -> UserDefaults {
         
@@ -46,13 +45,40 @@ class StorageController {
 
     func saveDevice(data: [String : Any], serial: String) {
 
-        siteCache().set(data, forKey: serial)
+        let cache = siteCache()
+        cache.set(data, forKey: serial)
 
-        if let index = currentSerials.firstIndex(where: {$0 == serial}) {
-            currentSerials[index] = serial
+        var deviceSerials = cache.stringArray(forKey: "deviceSerials") ?? [String]()
+        if let index = deviceSerials.firstIndex(where: {$0 == serial}) {
+            deviceSerials[index] = serial
         } else {
-            currentSerials.append(serial)
+            deviceSerials.append(serial)
         }
+        cache.set(deviceSerials, forKey: "deviceSerials")
+    }
+
+    func loadDeviceSerials() -> [String] {
+
+        siteCache().stringArray(forKey: "deviceSerials") ?? [String]()
+    }
+
+    func deleteDevice(serial: String) {
+
+        let cache = siteCache()
+
+        cache.removeObject(forKey: serial)
+        var deviceSerials = cache.stringArray(forKey: "deviceSerials") ?? [String]()
+        deviceSerials.removeAll(where: {$0 == serial})
+        cache.set(deviceSerials, forKey: "deviceSerials")
+
+    }
+
+    func updateRegisteredDeviceAdvertisementData(beaconData: BeaconData) {
+
+        guard let existingDevice = loadDevice(serial: beaconData.serial) else { return }
+        let updatedDevice = existingDevice.merging(beaconData.toDictionary){(_, new) in new}
+        saveDevice(data: updatedDevice, serial: beaconData.serial)
+
     }
 
     func loadDevice(serial: String) -> [String : Any]?{
@@ -63,19 +89,6 @@ class StorageController {
             print("Device not found in storage")
             return nil
         }
-    }
-
-    func updateDeviceActivationStatus(result: Bool, serial: String) {
-
-        guard var device = self.loadDevice(serial: serial) else { return }
-        device["isActivated"] = result
-        self.saveDevice(data: device, serial: serial)
-    }
-
-    func loadDeviceActivationStatus(serial: String) -> Bool {
-
-        guard let device = self.loadDevice(serial: serial) else { return false }
-        return device["isActivated"] as? Bool ?? false
     }
 
     func updateDeviceEvents(events: [DeviceEvent], serial: String){
@@ -98,12 +111,19 @@ class StorageController {
 
     }
 
+    func loadDeviceActivationStatus(serial: String) -> Bool {
+
+        guard let device = self.loadDevice(serial: serial) else { return false }
+        return device["isActivated"] as? Bool ?? false
+    }
+
+
     func updateDeviceActivation(deviceActivation: DeviceActivation, serial: String){
 
-        guard let device = self.loadDevice(serial: serial) else { return }
-        let updatedDevice = device.merging(deviceActivation.toDictionary){(_, new) in new}
-
-        self.saveDevice(data: updatedDevice, serial: serial)
+        guard let device = loadDevice(serial: serial) else { return }
+        var updatedDevice = device.merging(deviceActivation.toDictionary){(_, new) in new}
+        updatedDevice["isActivated"] = deviceActivation.result
+        saveDevice(data: updatedDevice, serial: serial)
     }
     
     func loadDeviceKey(serial: String) -> String? {
@@ -135,7 +155,7 @@ class StorageController {
             }
         }
 
-        if result == nil { print("Device key not found for serial") }
+        if result == "" { print("Device key not found for serial") }
 
         return result
     }
@@ -210,7 +230,7 @@ class StorageController {
     func loadFormattedDevicesForVisit() -> [[String : Any]]?{
 
         let cache = siteCache()
-
+        let currentSerials = loadDeviceSerials()
         var deviceObjectArray : [[String : Any]] = []
         for serial in currentSerials {
             if let device = cache.object(forKey: serial) as? [String : Any] {
@@ -227,10 +247,10 @@ class StorageController {
                 object["Battery"] = device["battery"]
                 object["Detections"] = formattedDetections(device)
                 object["Location"] = [
-                  "Latitude": 34.055569,
-                  "Longitude": -117.182541,
-                  "Accuracy": 1,
-                  "Date": StorageController.shared.formattedDate(date: Date())
+                    "Latitude": 34.055569,
+                    "Longitude": -117.182541,
+                    "Accuracy": 1,
+                    "Date": StorageController.shared.formattedDate(date: Date())
                 ]
 
                 deviceObjectArray.append(object)
@@ -259,7 +279,7 @@ class StorageController {
         return formattedDetections
     }
 
-     func formattedDate(date : Date) -> String {
+    func formattedDate(date : Date) -> String {
 
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
@@ -272,6 +292,7 @@ class StorageController {
     func printDeviceCache(serial: String? = nil) {
 
         let cache = siteCache()
+        let currentSerials = loadDeviceSerials()
 
         if serial == nil {
             var deviceArray : [[String : Any]] = []

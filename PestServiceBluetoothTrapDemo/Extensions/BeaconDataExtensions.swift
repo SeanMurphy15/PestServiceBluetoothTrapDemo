@@ -24,6 +24,24 @@ extension BeaconData : Identifiable, ObservableObject  {
         return StorageController.shared.loadDeviceActivationKey(model: Int(self.model))
     }
 
+    var isRegistered : Bool {
+
+        if self.deviceKey != nil && self.isActivated {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    var isPendingRegistration : Bool {
+
+        if self.isActivated == true && self.isRegistered == false {
+            return true
+        } else {
+            return false
+        }
+    }
+
     var deviceKey : String? {
         return StorageController.shared.loadDeviceKey(serial: self.serial)
     }
