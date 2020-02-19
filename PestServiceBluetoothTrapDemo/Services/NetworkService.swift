@@ -142,28 +142,19 @@ class NetworkService {
 
     func postVisit(completion: @escaping (_ isSuccess: Bool, _ message: String)-> Void) {
 
-        let services = StorageController.shared.loadFormattedDevicesForVisit()!
+        guard let visitData = StorageController.shared.loadVisitData() else {
+            completion(false, "\(#function) failed with error: Visit data was nil.")
+            return
+        }
+
         let endpoint = "https://smartwave-smart-trap-sdk-dev.azurewebsites.net/api/Visit"
         let url = URL(string: endpoint)!
         var request = URLRequest(url: url)
-
-      let body = [
-        [
-          "SiteId": "96b3b257-afcc-482d-aea7-a069f5329934",
-          "UserId": "06cb0dc9-1e48-4d52-bb30-dfe512b0bf6d",
-          "Services": services,
-          "Reference": "some reference"
-        ]
-      ]
-
-        let data = try! JSONSerialization.data(withJSONObject: body, options: [])
-        let r = try! JSONSerialization.jsonObject(with: data, options: []) as? [[String : Any]]
-        print("REQUEST -> <<<<\(r)>>>>")
         let accessToken = StorageController.shared.loadAccessToken()
         request.httpMethod = "POST"
-        request.httpBody = data
+        request.httpBody = visitData
         request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
 

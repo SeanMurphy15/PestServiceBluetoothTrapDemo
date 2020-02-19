@@ -44,6 +44,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
             for discoveredDevice in self.discoveredDevices {
                 self.storage.updateRegisteredDeviceAdvertisementData(beaconData: discoveredDevice)
             }
+            NetworkController.shared.postVisit()
         }
 
         deviceScanner.startScan { (beaconData) in
