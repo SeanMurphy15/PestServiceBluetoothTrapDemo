@@ -26,21 +26,23 @@ class TrapDetection : Identifiable, ObservableObject {
 
 }
 
-class TrapActivation : Identifiable, ObservableObject {
-
-    var signature : String
-    var time : Date?
-    var dictionary : [String:Any] = [:]
-
-    init(object: [String : Any]) {
-        self.signature = object["signature"] as? String ?? "0"
-        self.time = object["time"] as? Date
-        self.dictionary["HardwareVersion"] = time?.toGMTDateString()
-        self.dictionary["SensorSignature"] = self.signature
-
-    }
-
-}
+//class TrapActivation : Identifiable, ObservableObject {
+//
+//    var firmwareVersion : String
+//    var hardwareVersion : String
+//    var seed : String
+//    var dictionary : [String:Any] = [:]
+//
+//    init(object: [String : Any]) {
+//        self.firmwareVersion = object["firmwareVersion"] as? String ?? "0"
+//        self.hardwareVersion = object["hardwareVersion"] as? String ?? "0"
+//        self.seed = object["seed"] as? String ?? "0"
+////        self.dictionary["HardwareVersion"] = time?.toGMTDateString()
+////        self.dictionary["SensorSignature"] = self.signature
+//
+//    }
+//
+//}
 
 
 class Trap : Identifiable, ObservableObject {
