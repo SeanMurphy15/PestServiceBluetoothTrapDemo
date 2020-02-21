@@ -10,6 +10,8 @@
 		D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279ED823EBF984004F1E07 /* StorageController.swift */; };
 		D4279EDB23ECBCE0004F1E07 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279EDA23ECBCE0004F1E07 /* NetworkService.swift */; };
 		D4279EDF23ECDEEF004F1E07 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4279EDE23ECDEEF004F1E07 /* NetworkController.swift */; };
+		D463CA6823FF1F4B00A9DEDA /* Trap.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463CA6723FF1F4B00A9DEDA /* Trap.swift */; };
+		D463CA6A23FF476F00A9DEDA /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D463CA6923FF476F00A9DEDA /* DateExtensions.swift */; };
 		D46A2FAD23F49EDB00A8CB3D /* DeviceActivationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46A2FAC23F49EDB00A8CB3D /* DeviceActivationExtensions.swift */; };
 		D4AA361B23EA02ED009D963E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361A23EA02ED009D963E /* AppDelegate.swift */; };
 		D4AA361D23EA02ED009D963E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AA361C23EA02ED009D963E /* SceneDelegate.swift */; };
@@ -49,6 +51,8 @@
 		D4279ED823EBF984004F1E07 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		D4279EDA23ECBCE0004F1E07 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		D4279EDE23ECDEEF004F1E07 /* NetworkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		D463CA6723FF1F4B00A9DEDA /* Trap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trap.swift; sourceTree = "<group>"; };
+		D463CA6923FF476F00A9DEDA /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		D46A2FAC23F49EDB00A8CB3D /* DeviceActivationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceActivationExtensions.swift; sourceTree = "<group>"; };
 		D4AA361723EA02ED009D963E /* PestServiceBluetoothTrapDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PestServiceBluetoothTrapDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4AA361A23EA02ED009D963E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +125,7 @@
 		D4AA361923EA02ED009D963E /* PestServiceBluetoothTrapDemo */ = {
 			isa = PBXGroup;
 			children = (
+				D463CA6723FF1F4B00A9DEDA /* Trap.swift */,
 				D4AA361A23EA02ED009D963E /* AppDelegate.swift */,
 				D4AA361C23EA02ED009D963E /* SceneDelegate.swift */,
 				D4BCFBAF23FBA69C0033C405 /* Site Detail */,
@@ -172,6 +177,7 @@
 				D4E14AB023ED16A600382BAF /* BeaconDataExtensions.swift */,
 				D4E14AB223ED1CC200382BAF /* DeviceDetectionExtensions.swift */,
 				D46A2FAC23F49EDB00A8CB3D /* DeviceActivationExtensions.swift */,
+				D463CA6923FF476F00A9DEDA /* DateExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -254,12 +260,14 @@
 				D4AA361D23EA02ED009D963E /* SceneDelegate.swift in Sources */,
 				D4BCFBAA23FB14A60033C405 /* SiteDetailView.swift in Sources */,
 				D4279EDB23ECBCE0004F1E07 /* NetworkService.swift in Sources */,
+				D463CA6A23FF476F00A9DEDA /* DateExtensions.swift in Sources */,
 				D4AA362F23EA0357009D963E /* BluetoothController.swift in Sources */,
 				D4E562DF23FC584A00A14415 /* BarChartView.swift in Sources */,
 				D4BCFBAE23FBA0EF0033C405 /* ActivateDeviceView.swift in Sources */,
 				D4AA361F23EA02ED009D963E /* DeviceListView.swift in Sources */,
 				D4E14AB323ED1CC200382BAF /* DeviceDetectionExtensions.swift in Sources */,
 				D4279ED923EBF984004F1E07 /* StorageController.swift in Sources */,
+				D463CA6823FF1F4B00A9DEDA /* Trap.swift in Sources */,
 				D4BCFBAC23FB79E00033C405 /* SiteDetailViewModel.swift in Sources */,
 				D4E14AB123ED16A600382BAF /* BeaconDataExtensions.swift in Sources */,
 				D46A2FAD23F49EDB00A8CB3D /* DeviceActivationExtensions.swift in Sources */,

@@ -44,7 +44,6 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
             for discoveredDevice in self.discoveredDevices {
                 self.storage.updateRegisteredDeviceAdvertisementData(beaconData: discoveredDevice)
             }
-            NetworkController.shared.postVisit()
         }
 
         deviceScanner.startScan { (beaconData) in
@@ -80,10 +79,9 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
 
             let deviceDeactivation = deviceScanner.deactivateDevice(serial: beaconData.serial, key: beaconData.deviceKey!)
 
-            if deviceDeactivation{
+            if deviceDeactivation {
 
                 storage.deleteDevice(serial: beaconData.serial)
-
             }
         }
     }
@@ -98,14 +96,4 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
     }
 }
 
-extension DeviceActivation {
 
-    var toDictionary : [String : Any] {
-        let mirror = Mirror(reflecting: self)
-        let variableList: [(String, Any)] = mirror.children.compactMap {
-            guard let label = $0.label else { return nil }
-            return (label, $0.value)
-        }
-        return Dictionary(uniqueKeysWithValues: variableList)
-    }
-}

@@ -7,3 +7,16 @@
 //
 
 import Foundation
+import BellSensingBLE
+
+extension DeviceActivation {
+
+    var toDictionary : [String : Any] {
+        let mirror = Mirror(reflecting: self)
+        let variableList: [(String, Any)] = mirror.children.compactMap {
+            guard let label = $0.label else { return nil }
+            return (label, $0.value)
+        }
+        return Dictionary(uniqueKeysWithValues: variableList)
+    }
+}

@@ -72,14 +72,7 @@ class StorageController {
         cache.set(deviceSerials, forKey: "deviceSerials")
         
     }
-    
-    func updateRegisteredDeviceAdvertisementData(beaconData: BeaconData) {
-        
-        guard let existingDevice = loadDevice(serial: beaconData.serial) else { return }
-        let updatedDevice = existingDevice.merging(beaconData.toDictionary){(_, new) in new}
-        saveDevice(data: updatedDevice, serial: beaconData.serial)
-        
-    }
+
     
     func loadDevice(serial: String) -> [String : Any]?{
         
@@ -91,24 +84,7 @@ class StorageController {
         }
     }
     
-    func updateDeviceEvents(events: [DeviceEvent], serial: String){
-        
-        guard var device = self.loadDevice(serial: serial) else { return }
-        var deviceEvents : [[String : Any]] = []
-        var deviceDetections : [[String : Any]] = []
-        
-        for deviceEvent in events {
-            let detectionDictArray = deviceEvent.detections.map({$0.toDictionary})
-            let eventDict : [String : Any] = ["start" : deviceEvent.start,
-                                              "end" : deviceEvent.end ]
-            deviceDetections.append(contentsOf: detectionDictArray)
-            deviceEvents.append(eventDict)
-        }
-        device["deviceEvents"] = deviceEvents
-        device["detections"] = deviceDetections
-        self.saveDevice(data: device, serial: serial)
-        
-    }
+
     
     func loadDeviceActivationStatus(serial: String) -> Bool {
         
@@ -116,14 +92,6 @@ class StorageController {
         return device["isActivated"] as? Bool ?? false
     }
     
-    
-    func updateDeviceActivation(deviceActivation: DeviceActivation, serial: String){
-        
-        guard let device = loadDevice(serial: serial) else { return }
-        var updatedDevice = device.merging(deviceActivation.toDictionary){(_, new) in new}
-        updatedDevice["isActivated"] = deviceActivation.result
-        saveDevice(data: updatedDevice, serial: serial)
-    }
     
     func loadDeviceKey(serial: String) -> String? {
         
@@ -226,83 +194,7 @@ class StorageController {
         return accessToken
     }
     
-    func loadVisitData() -> Data? {
-        
-        let cache = siteCache()
-        let currentSerials = loadDeviceSerials()
-        let date = formattedDate(date: Date())
-        
-        var serviceObjectArray : [[String : Any]] = []
-        
-        for serial in currentSerials {
-            if let device = cache.object(forKey: serial) as? [String : Any] {
-                var object : [String : Any] = [:]
-                
-                object["Serial"] = device["serial"]
-                object["HardwareVersion"] = device["hardwareVersion"]
-                object["FirmwareVersion"] = device["firmwareVersion"]
-                object["DeviceModel"] = device["model"]
-                object["Seed"] = device["seed"]
-                object["Date"] = date
-                object["Temperature"] = device["temperature"]
-                object["Battery"] = device["battery"]
-                object["Detections"] = formattedDetections(device)
-                object["Location"] = [
-                    "Latitude": 34.055569,
-                    "Longitude": -117.182541,
-                    "Accuracy": 1,
-                    "Date": date
-                ]
-                
-                serviceObjectArray.append(object)
-            }
-        }
-        
-        let body = [
-            [
-                "SiteId": "96b3b257-afcc-482d-aea7-a069f5329934",
-                "UserId": "06cb0dc9-1e48-4d52-bb30-dfe512b0bf6d",
-                "Services": serviceObjectArray,
-                "Reference": "some reference"
-            ]
-        ]
-        
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: body, options: [])
-            let jsonString = String(data: jsonData, encoding: .utf8)
-            print("VISIT POST OBJECT <<<<<\(jsonString ?? "[]")>>>>>")
-            return jsonData
-        } catch let error {
-            print("FUNCTION ERROR: \(self) \(#function) \(#line) : \(error.localizedDescription)")
-            return nil
-        }
-    }
-    
-    fileprivate func formattedDetections(_ device: [String : Any]) -> [[String : Any]] {
-        
-        guard let detectionsObject = device["detections"],
-            let detections = detectionsObject as? [[String : Any]]  else { return [] }
-        
-        var formattedDetections : [[String : Any]] = []
-        
-        for detection in detections {
-            guard let date = detection["time"] as? Date,
-                let sensorSignature = detection["signature"] else { return formattedDetections }
-            let formattedDetection = ["Date": formattedDate(date: date), "SensorSignature": sensorSignature]
-            formattedDetections.append(formattedDetection)
-        }
-        
-        return formattedDetections
-    }
-    
-    func formattedDate(date : Date) -> String {
-        
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let formattedDate = formatter.string(from: date)
-        return formattedDate
-    }
+
     
     func printDeviceCache(serial: String? = nil) {
         
