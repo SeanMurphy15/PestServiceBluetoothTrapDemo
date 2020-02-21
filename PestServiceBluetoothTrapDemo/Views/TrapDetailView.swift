@@ -74,7 +74,7 @@ struct TrapDetailView: View {
                         Text("Download Event Data")
                         Spacer()
                         Button(action: {
-                            print("Remove Device button was tapped")
+                            self.bluetoothController.downloadEvents(trap: self.trap)
                         }) {
                             Image(systemName: "arrow.down.circle")
                         }.foregroundColor(Color.blue)

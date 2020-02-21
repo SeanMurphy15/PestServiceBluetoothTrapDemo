@@ -34,17 +34,6 @@ class NetworkController {
         }
     }
 
-    func postVisit(traps: [Trap]) {
-
-        NetworkService.shared.postVisit(traps: traps) { (isSuccess, message) in
-            if isSuccess {
-                print(message)
-
-            } else {
-                print(message)
-            }
-        }
-    }
 
     func getVersion() {
 

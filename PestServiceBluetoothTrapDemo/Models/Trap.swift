@@ -177,6 +177,7 @@ class Trap : Identifiable, ObservableObject {
         }
         device["deviceEvents"] = deviceEvents
         device["detections"] = deviceDetections
+
         StorageController.shared.saveDevice(data: device, serial: serial)
     }
 

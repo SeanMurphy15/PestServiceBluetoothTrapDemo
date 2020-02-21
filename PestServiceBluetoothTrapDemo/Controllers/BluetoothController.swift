@@ -26,6 +26,8 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
         }
     }
 
+    var servicedTraps : [Trap] = []
+
     private var centralManager: CBCentralManager!
     private var deviceScanner: DeviceScanner!
     private var storage : StorageController!
@@ -79,6 +81,18 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
         if trap.isRegistered {
             let events = deviceScanner.downloadEvents(beaconData: trap.data, serial: trap.serial, key: trap.deviceKey!, filterSeconds: 0) // keep filter seconds at zero for now
             trap.saveEvents(events: events)
+        }
+    }
+
+    func sendTrapServiceData() {
+
+        NetworkService.shared.postVisit(traps: self.servicedTraps) { (isSuccess, message) in
+            if isSuccess {
+                print(message)
+
+            } else {
+                print(message)
+            }
         }
     }
 }
