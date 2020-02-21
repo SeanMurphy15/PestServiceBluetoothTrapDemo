@@ -140,9 +140,9 @@ class NetworkService {
         task.resume()
     }
 
-    func postVisit(completion: @escaping (_ isSuccess: Bool, _ message: String)-> Void) {
+    func postVisit(traps: [Trap], completion: @escaping (_ isSuccess: Bool, _ message: String)-> Void) {
 
-        guard let visitData = StorageController.shared.loadVisitData() else {
+        guard let visitData = StorageController.shared.createVisitData(traps: traps) else {
             completion(false, "\(#function) failed with error: Visit data was nil.")
             return
         }

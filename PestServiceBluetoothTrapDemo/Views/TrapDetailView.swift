@@ -38,10 +38,10 @@ import BellSensingBLE
     95: Double.random(in: 0...60)
 ]
 
-struct DeviceDetailView: View {
+struct TrapDetailView: View {
 
     @ObservedObject var bluetoothController : BluetoothController
-    @ObservedObject var device : BeaconData
+    @ObservedObject var trap : Trap
     @State var showingDetail = false
 
     var body: some View {
@@ -50,7 +50,7 @@ struct DeviceDetailView: View {
             List {
                 Section(header: Text("Activity")) {
                     HStack {
-                            BarChartView(
+                            TrapDetectionChartView(
                             detections: 1,
                             data: moveChartData)
                             .padding([.bottom], 25)
@@ -61,12 +61,12 @@ struct DeviceDetailView: View {
                     HStack {
                         Text("Events")
                         Spacer()
-                        Text("\(device.eventsSinceLastService)")
+                        Text("\(trap.data.eventsSinceLastService)")
                     }
                     HStack {
                         Text("Detections")
                         Spacer()
-                        Text("\(device.detectionsSinceLastService)")
+                        Text("\(trap.data.detectionsSinceLastService)")
                     }
                 }
                 Section(header: Text("Actions")) {
@@ -112,34 +112,34 @@ struct DeviceDetailView: View {
                     HStack {
                         Text("Serial")
                         Spacer()
-                        Text("\(device.serial)")
+                        Text("\(trap.serial)")
                     }
                     HStack {
                         Text("RSSI")
                         Spacer()
-                        Text("\(device.rssi)")
+                        Text("\(trap.data.rssi)")
                     }
                     HStack {
                         Text("Battery")
                         Spacer()
-                        Text(device.batteryPercentage)
+                        Text(trap.batteryPercentage)
                     }
                     HStack {
                         Text("Transmit Power")
                         Spacer()
-                        Text("\(device.transmitPower)")
+                        Text("\(trap.data.transmitPower)")
                     }
                 }
             }
         }
-        .navigationBarTitle(Text("\(device.modelName)"), displayMode: .inline)
+        .navigationBarTitle(Text("\(trap.modelName)"), displayMode: .inline)
         .navigationBarItems(trailing:
             Button(action: {
                 self.showingDetail = true
             }) {
                 Text("Service")
             }.sheet(isPresented: self.$showingDetail) {
-                ServiceDeviceView()
+                TrapServiceView()
             }
         )
     }

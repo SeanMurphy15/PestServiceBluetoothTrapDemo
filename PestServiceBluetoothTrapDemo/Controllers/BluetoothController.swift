@@ -16,13 +16,13 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {}
 
-    @Published var registeredDevices : [BeaconData] = []
-    @Published var unRegisteredDevices : [BeaconData] = []
+    @Published var registeredTraps : [Trap] = []
+    @Published var unRegisteredTraps : [Trap] = []
 
-    private var discoveredDevices : [BeaconData] = [] {
+    private var discoveredTraps : [Trap] = [] {
         didSet {
-            self.registeredDevices = discoveredDevices.filter({$0.isRegistered == true})
-            self.unRegisteredDevices = discoveredDevices.filter({$0.isRegistered == false})
+            self.registeredTraps = discoveredTraps.filter({$0.isRegistered == true})
+            self.unRegisteredTraps = discoveredTraps.filter({$0.isRegistered == false})
         }
     }
 
@@ -37,61 +37,48 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
         deviceScanner = DeviceScanner.getInstance(cbCentralManager: centralManager)
     }
 
-    func startScan() {
+    func scanForTraps() {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
             self.deviceScanner.endScan()
-            for discoveredDevice in self.discoveredDevices {
-                self.storage.updateRegisteredDeviceAdvertisementData(beaconData: discoveredDevice)
-            }
         }
 
         deviceScanner.startScan { (beaconData) in
-            if let index = self.discoveredDevices.firstIndex(where: {$0.serial == beaconData.serial}) {
-                self.discoveredDevices[index] = beaconData
+            let trap = Trap(beaconData: beaconData)
+            if let index = self.discoveredTraps.firstIndex(where: {$0.serial == trap.serial}) {
+                self.discoveredTraps[index] = trap
             } else {
-                self.discoveredDevices.append(beaconData)
-            }
-        }
-
-    }
-
-
-    func activateDevice(beaconData: BeaconData){
-
-        if beaconData.isRegistered == false {
-
-            let deviceActivation = deviceScanner.activateDevice(serial: beaconData.serial, siteId: storage.siteId, key: beaconData.activationKey)
-
-            if deviceActivation.result {
-
-                storage.saveDevice(data: beaconData.toDictionary, serial: beaconData.serial)
-                storage.updateDeviceActivation(deviceActivation: deviceActivation, serial: beaconData.serial)
-
+                self.discoveredTraps.append(trap)
             }
         }
     }
 
-    // needs unique beacon DatadeviceKey after registering to site
-    func deactivateDevice(beaconData: BeaconData){
 
-        if beaconData.isRegistered {
+    func activateTrap(trap: Trap){
 
-            let deviceDeactivation = deviceScanner.deactivateDevice(serial: beaconData.serial, key: beaconData.deviceKey!)
-
-            if deviceDeactivation {
-
-                storage.deleteDevice(serial: beaconData.serial)
+        if trap.isRegistered == false {
+            let trapActivation = deviceScanner.activateDevice(serial: trap.serial, siteId: storage.siteId, key: trap.activationKey)
+            if trapActivation.result {
+                trap.saveActivation(trapActivation: trapActivation)
             }
         }
     }
 
-    // needs unique beacon DatadeviceKey after registering to site
-    func downloadEvents(beaconData: BeaconData){
+    func deactivateTrap(trap: Trap){
 
-        if beaconData.isRegistered {
-            let events = deviceScanner.downloadEvents(beaconData: beaconData, serial: beaconData.serial, key: beaconData.deviceKey!, filterSeconds: 0) // keep filter seconds at zero for now
-            storage.updateDeviceEvents(events: events, serial: beaconData.serial)
+        if trap.isRegistered {
+            let trapDeactivation = deviceScanner.deactivateDevice(serial: trap.serial, key: trap.deviceKey!)
+            if trapDeactivation {
+                trap.delete()
+            }
+        }
+    }
+
+    func downloadEvents(trap: Trap){
+
+        if trap.isRegistered {
+            let events = deviceScanner.downloadEvents(beaconData: trap.data, serial: trap.serial, key: trap.deviceKey!, filterSeconds: 0) // keep filter seconds at zero for now
+            trap.saveEvents(events: events)
         }
     }
 }

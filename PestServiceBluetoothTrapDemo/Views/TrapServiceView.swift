@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct ServiceDeviceView: View {
+struct TrapServiceView: View {
 
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
 
@@ -68,6 +68,6 @@ struct ServiceDeviceView: View {
 
 struct ServiceDeviceView_Previews: PreviewProvider {
     static var previews: some View {
-        ServiceDeviceView()
+        TrapServiceView()
     }
 }

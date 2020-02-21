@@ -34,9 +34,9 @@ class NetworkController {
         }
     }
 
-    func postVisit() {
+    func postVisit(traps: [Trap]) {
 
-        NetworkService.shared.postVisit { (isSuccess, message) in
+        NetworkService.shared.postVisit(traps: traps) { (isSuccess, message) in
             if isSuccess {
                 print(message)
 

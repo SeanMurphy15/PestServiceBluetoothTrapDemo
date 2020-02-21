@@ -10,22 +10,6 @@ import Foundation
 import SwiftUI
 import BellSensingBLE
 
-class TrapDetection : Identifiable, ObservableObject {
-
-    var signature : String
-    var time : Date?
-    var dictionary : [String:Any] = [:]
-
-    init(object: [String : Any]) {
-        self.signature = object["signature"] as? String ?? "0"
-        self.time = object["time"] as? Date
-        self.dictionary["Date"] = time?.toGMTDateString()
-        self.dictionary["SensorSignature"] = self.signature
-
-    }
-
-}
-
 
 class Trap : Identifiable, ObservableObject {
 
@@ -37,11 +21,6 @@ class Trap : Identifiable, ObservableObject {
 
         self.data = beaconData
         self.serial = beaconData.serial
-
-        if let existingDevice = StorageController.shared.loadDevice(serial: beaconData.serial) {
-            let updatedDevice = existingDevice.merging(beaconData.toDictionary){(_, new) in new}
-            StorageController.shared.saveDevice(data: updatedDevice, serial: beaconData.serial)
-        }
 
     }
 
@@ -76,7 +55,8 @@ class Trap : Identifiable, ObservableObject {
     }
 
     var isActivated : Bool {
-        return StorageController.shared.loadDeviceActivationStatus(serial: self.serial)
+        guard let device = StorageController.shared.loadDevice(serial: self.serial) else { return false }
+        return device["isActivated"] as? Bool ?? false
     }
 
     var activationKey : String {
@@ -141,7 +121,7 @@ class Trap : Identifiable, ObservableObject {
         }
     }
 
-    func createService() -> [String : Any]? {
+    var service : [String : Any]? {
 
         let date = Date().toGMTDateString()
 
@@ -152,7 +132,7 @@ class Trap : Identifiable, ObservableObject {
             let longitude = self.longitude,
             let accuracy = self.accuracy else { return nil }
 
-        var object : [String : Any] = [
+        let object : [String : Any] = [
             "Serial": self.serial,
             "HardwareVersion": hardwareVersion,
             "FirmwareVersion": firmwareVersion,
@@ -169,26 +149,7 @@ class Trap : Identifiable, ObservableObject {
                 "Date": date
             ]
         ]
-
-
-        //        let body = [
-        //            [
-        //                "SiteId": "96b3b257-afcc-482d-aea7-a069f5329934",
-        //                "UserId": "06cb0dc9-1e48-4d52-bb30-dfe512b0bf6d",
-        //                "Services": serviceObjectArray,
-        //                "Reference": "some reference"
-        //            ]
-        //        ]
-
-        do {
-            let jsonData = try JSONSerialization.data(withJSONObject: body, options: [])
-            let jsonString = String(data: jsonData, encoding: .utf8)
-            print("VISIT POST OBJECT <<<<<\(jsonString ?? "[]")>>>>>")
-            return jsonData
-        } catch let error {
-            print("FUNCTION ERROR: \(self) \(#function) \(#line) : \(error.localizedDescription)")
-            return nil
-        }
+        return object
     }
 
     var detections : [TrapDetection] {
@@ -209,7 +170,8 @@ class Trap : Identifiable, ObservableObject {
         for deviceEvent in events {
             let detectionDictArray = deviceEvent.detections.map({$0.toDictionary})
             let eventDict : [String : Any] = ["start" : deviceEvent.start,
-                                              "end" : deviceEvent.end ]
+                                              "end" : deviceEvent.end,
+                                              "detections" : detectionDictArray]
             deviceDetections.append(contentsOf: detectionDictArray)
             deviceEvents.append(eventDict)
         }
@@ -218,12 +180,23 @@ class Trap : Identifiable, ObservableObject {
         StorageController.shared.saveDevice(data: device, serial: serial)
     }
 
-    func saveActivation(deviceActivation: DeviceActivation){
+    func saveActivation(trapActivation: DeviceActivation){
 
         StorageController.shared.saveDevice(data: self.data.toDictionary, serial: self.serial)
         guard let device = StorageController.shared.loadDevice(serial: serial) else { return }
-        var updatedDevice = device.merging(deviceActivation.toDictionary){(_, new) in new}
-        updatedDevice["isActivated"] = deviceActivation.result
+        var updatedDevice = device.merging(trapActivation.toDictionary){(_, new) in new}
+        updatedDevice["isActivated"] = trapActivation.result
         StorageController.shared.saveDevice(data: updatedDevice, serial: serial)
     }
+
+    func delete() {
+
+        let cache = StorageController.shared.siteCache()
+
+        cache.removeObject(forKey: self.serial)
+         var deviceSerials = cache.stringArray(forKey: "deviceSerials") ?? [String]()
+         deviceSerials.removeAll(where: {$0 == serial})
+         cache.set(deviceSerials, forKey: "deviceSerials")
+
+     }
 }

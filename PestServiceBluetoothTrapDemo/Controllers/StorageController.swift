@@ -62,36 +62,15 @@ class StorageController {
         siteCache().stringArray(forKey: "deviceSerials") ?? [String]()
     }
     
-    func deleteDevice(serial: String) {
-        
-        let cache = siteCache()
-        
-        cache.removeObject(forKey: serial)
-        var deviceSerials = cache.stringArray(forKey: "deviceSerials") ?? [String]()
-        deviceSerials.removeAll(where: {$0 == serial})
-        cache.set(deviceSerials, forKey: "deviceSerials")
-        
-    }
-
     
     func loadDevice(serial: String) -> [String : Any]?{
         
         if let device = siteCache().dictionary(forKey: serial) {
             return device
         } else {
-            print("Device not found in storage")
             return nil
         }
     }
-    
-
-    
-    func loadDeviceActivationStatus(serial: String) -> Bool {
-        
-        guard let device = self.loadDevice(serial: serial) else { return false }
-        return device["isActivated"] as? Bool ?? false
-    }
-    
     
     func loadDeviceKey(serial: String) -> String? {
         
@@ -110,7 +89,7 @@ class StorageController {
             return nil
         }
         
-        var result : String = ""
+        var result : String?
         
         for deviceKey in deviceKeys {
             guard let ds = deviceKey["Serial"] as? String,
@@ -121,9 +100,7 @@ class StorageController {
                 result = dk
             }
         }
-        
-        if result == "" { print("Device key not found for serial") }
-        
+                
         return result
     }
     
@@ -194,14 +171,19 @@ class StorageController {
         return accessToken
     }
 
-    func createVisitData(trapData: [Trap]) -> Data? {
+    func createVisitData(traps: [Trap]) -> Data? {
 
+        let services = traps.compactMap({$0.service})
+        if services.count == 0 {
+            print("Error: Invalid trap services.")
+            return nil
+        }
 
             let body = [
                 [
                     "SiteId": "96b3b257-afcc-482d-aea7-a069f5329934",
                     "UserId": "06cb0dc9-1e48-4d52-bb30-dfe512b0bf6d",
-                    "Services": trapData.compactMap({$0.createService()}),
+                    "Services": services,
                     "Reference": "some reference"
                 ]
             ]
@@ -216,8 +198,6 @@ class StorageController {
                 return nil
             }
          }
-
-    
 
     
     func printDeviceCache(serial: String? = nil) {

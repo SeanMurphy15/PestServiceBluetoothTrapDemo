@@ -16,11 +16,11 @@ struct Constants {
     static let barChartColumnSpacing: CGFloat = 1
 }
 
-struct BarChartView: View {
+struct TrapDetectionChartView: View {
 
      var detections: Int
      var data: [Int: Double]
-     var textColor = Color.white
+     var textColor = Color.blue
      var barStartColor = Color.blue
      var barEndColor = Color.blue
 
@@ -30,7 +30,7 @@ struct BarChartView: View {
                 Text("Trap Activity")
                     .font(Font.system(size: 18, weight: .regular, design: .default))
                     .kerning(0.05)
-                    .foregroundColor(Color.white)
+                    .foregroundColor(textColor)
             }
             .padding([.bottom], 10)
             self.createChart()
