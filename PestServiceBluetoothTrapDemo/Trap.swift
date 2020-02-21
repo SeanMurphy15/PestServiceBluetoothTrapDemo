@@ -26,24 +26,6 @@ class TrapDetection : Identifiable, ObservableObject {
 
 }
 
-//class TrapActivation : Identifiable, ObservableObject {
-//
-//    var firmwareVersion : String
-//    var hardwareVersion : String
-//    var seed : String
-//    var dictionary : [String:Any] = [:]
-//
-//    init(object: [String : Any]) {
-//        self.firmwareVersion = object["firmwareVersion"] as? String ?? "0"
-//        self.hardwareVersion = object["hardwareVersion"] as? String ?? "0"
-//        self.seed = object["seed"] as? String ?? "0"
-////        self.dictionary["HardwareVersion"] = time?.toGMTDateString()
-////        self.dictionary["SensorSignature"] = self.signature
-//
-//    }
-//
-//}
-
 
 class Trap : Identifiable, ObservableObject {
 
@@ -63,105 +45,140 @@ class Trap : Identifiable, ObservableObject {
 
     }
 
-     var isActivated : Bool {
-         return StorageController.shared.loadDeviceActivationStatus(serial: self.serial)
-     }
+    var firmwareVersion : String? {
+        guard let device = StorageController.shared.loadDevice(serial: self.serial) else { return nil }
+        return device["firmwareVersion"] as? String ?? nil
+    }
 
-     var activationKey : String {
+    var hardwareVersion : String? {
+        guard let device = StorageController.shared.loadDevice(serial: self.serial) else { return nil }
+        return device["hardwareVersion"] as? String ?? nil
+    }
+
+    var latitude : Double? {
+        guard let device = StorageController.shared.loadDevice(serial: self.serial) else { return nil }
+        return device["latitude"] as? Double ?? 34.055569
+    }
+
+    var longitude : Double? {
+        guard let device = StorageController.shared.loadDevice(serial: self.serial) else { return nil }
+        return device["longitude"] as? Double ?? -117.182541
+    }
+
+    var accuracy : Int? {
+        guard let device = StorageController.shared.loadDevice(serial: self.serial) else { return nil }
+        return device["accuracy"] as? Int ?? 0
+    }
+
+    var seed : String? {
+        guard let device = StorageController.shared.loadDevice(serial: self.serial) else { return nil }
+        return device["seed"] as? String ?? nil
+    }
+
+    var isActivated : Bool {
+        return StorageController.shared.loadDeviceActivationStatus(serial: self.serial)
+    }
+
+    var activationKey : String {
         return StorageController.shared.loadDeviceActivationKey(model: Int(self.data.model))
-     }
+    }
 
-     var isRegistered : Bool {
+    var isRegistered : Bool {
 
-         if self.deviceKey != nil && self.isActivated {
-             return true
-         } else {
-             return false
-         }
-     }
+        if self.deviceKey != nil && self.isActivated {
+            return true
+        } else {
+            return false
+        }
+    }
 
-     var isPendingRegistration : Bool {
+    var isPendingRegistration : Bool {
 
-         if self.isActivated == true && self.isRegistered == false {
-             return true
-         } else {
-             return false
-         }
-     }
+        if self.isActivated == true && self.isRegistered == false {
+            return true
+        } else {
+            return false
+        }
+    }
 
-     var deviceKey : String? {
-         return StorageController.shared.loadDeviceKey(serial: self.serial)
-     }
+    var deviceKey : String? {
+        return StorageController.shared.loadDeviceKey(serial: self.serial)
+    }
 
-     var batteryPercentage : String {
+    var batteryPercentage : String {
         return String(self.data.battery) + "%"
-     }
+    }
 
-     var modelName: String {
-
-        switch self.data.model {
-         case 1:
-             return "Trapper Express IQ"
-         case 2:
-             return "Trapper Ambush IQ"
-         case 3:
-             return "Trapper 24/7 IQ"
-         case 4:
-             return "Trapper T-Rex IQ"
-         default:
-             return "Unknown Model"
-         }
-     }
-
-     var imageName: String {
+    var modelName: String {
 
         switch self.data.model {
-         case 1:
-             return "bell_sensing_logo"
-         case 2:
-             return "bell_sensing_logo"
-         case 3:
-             return "bell_sensing_logo"
-         case 4:
-             return "bell_sensing_logo"
-         default:
-             return "bell_sensing_logo"
-         }
-     }
+        case 1:
+            return "Trapper Express IQ"
+        case 2:
+            return "Trapper Ambush IQ"
+        case 3:
+            return "Trapper 24/7 IQ"
+        case 4:
+            return "Trapper T-Rex IQ"
+        default:
+            return "Unknown Model"
+        }
+    }
+
+    var imageName: String {
+
+        switch self.data.model {
+        case 1:
+            return "bell_sensing_logo"
+        case 2:
+            return "bell_sensing_logo"
+        case 3:
+            return "bell_sensing_logo"
+        case 4:
+            return "bell_sensing_logo"
+        default:
+            return "bell_sensing_logo"
+        }
+    }
 
     func createService() -> [String : Any]? {
 
         let date = Date().toGMTDateString()
-        guard let device = StorageController.shared.loadDevice(serial: self.serial) else { return nil }
 
-                var object : [String : Any] = [:]
+        guard let hardwareVersion = self.hardwareVersion,
+            let firmwareVersion = self.hardwareVersion,
+            let seed = self.seed,
+            let latitude = self.latitude,
+            let longitude = self.longitude,
+            let accuracy = self.accuracy else { return nil }
 
-                object["Serial"] = device["serial"]
-                object["HardwareVersion"] = device["hardwareVersion"]
-                object["FirmwareVersion"] = device["firmwareVersion"]
-                object["DeviceModel"] = device["model"]
-                object["Seed"] = device["seed"]
-                object["Date"] = date
-                object["Temperature"] = device["temperature"]
-                object["Battery"] = device["battery"]
-                object["Detections"] = detections.map({$0.dictionary})
-                object["Location"] = [
-                    "Latitude": 34.055569,
-                    "Longitude": -117.182541,
-                    "Accuracy": 1,
-                    "Date": date
-                ]
+        var object : [String : Any] = [
+            "Serial": self.serial,
+            "HardwareVersion": hardwareVersion,
+            "FirmwareVersion": firmwareVersion,
+            "DeviceModel": self.data.model,
+            "Seed": seed,
+            "Date": date,
+            "Tempurature": self.data.temperature,
+            "Battery": self.data.battery,
+            "Detections": self.detections.map({$0.dictionary}),
+            "Location" : [
+                "Latitude": latitude,
+                "Longitude": longitude,
+                "Accuracy": accuracy,
+                "Date": date
+            ]
+        ]
 
 
-
-//        let body = [
-//            [
-//                "SiteId": "96b3b257-afcc-482d-aea7-a069f5329934",
-//                "UserId": "06cb0dc9-1e48-4d52-bb30-dfe512b0bf6d",
-//                "Services": serviceObjectArray,
-//                "Reference": "some reference"
-//            ]
-//        ]
+        //        let body = [
+        //            [
+        //                "SiteId": "96b3b257-afcc-482d-aea7-a069f5329934",
+        //                "UserId": "06cb0dc9-1e48-4d52-bb30-dfe512b0bf6d",
+        //                "Services": serviceObjectArray,
+        //                "Reference": "some reference"
+        //            ]
+        //        ]
 
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: body, options: [])

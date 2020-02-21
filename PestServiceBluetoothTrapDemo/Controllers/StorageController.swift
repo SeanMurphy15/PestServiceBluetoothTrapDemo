@@ -193,6 +193,30 @@ class StorageController {
         }
         return accessToken
     }
+
+    func createVisitData(trapData: [Trap]) -> Data? {
+
+
+            let body = [
+                [
+                    "SiteId": "96b3b257-afcc-482d-aea7-a069f5329934",
+                    "UserId": "06cb0dc9-1e48-4d52-bb30-dfe512b0bf6d",
+                    "Services": trapData.compactMap({$0.createService()}),
+                    "Reference": "some reference"
+                ]
+            ]
+
+            do {
+                let jsonData = try JSONSerialization.data(withJSONObject: body, options: [])
+                let jsonString = String(data: jsonData, encoding: .utf8)
+                print("VISIT POST OBJECT <<<<<\(jsonString ?? "[]")>>>>>")
+                return jsonData
+            } catch let error {
+                print("FUNCTION ERROR: \(self) \(#function) \(#line) : \(error.localizedDescription)")
+                return nil
+            }
+         }
+
     
 
     
