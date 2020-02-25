@@ -9,34 +9,6 @@
 import SwiftUI
 import BellSensingBLE
 
- let moveChartData: [Int: Double] = [
-    1: Double.random(in: 0...60),
-    21: Double.random(in: 0...60),
-    22: Double.random(in: 0...60),
-    23: Double.random(in: 0...60),
-    50: Double.random(in: 0...60),
-    51: Double.random(in: 0...60),
-    52: Double.random(in: 0...60),
-    53: Double.random(in: 0...60),
-    54: Double.random(in: 0...60),
-    55: Double.random(in: 0...60),
-    56: Double.random(in: 0...60),
-    57: Double.random(in: 0...60),
-    58: Double.random(in: 0...60),
-    59: Double.random(in: 0...60),
-    60: Double.random(in: 0...60),
-    61: Double.random(in: 0...60),
-    62: Double.random(in: 0...60),
-    63: Double.random(in: 0...60),
-    64: Double.random(in: 0...60),
-    65: Double.random(in: 0...60),
-    90: Double.random(in: 0...60),
-    91: Double.random(in: 0...60),
-    92: Double.random(in: 0...60),
-    93: Double.random(in: 0...60),
-    94: Double.random(in: 0...60),
-    95: Double.random(in: 0...60)
-]
 
 struct TrapDetailView: View {
 
@@ -49,12 +21,8 @@ struct TrapDetailView: View {
         VStack {
             List {
                 Section(header: Text("Activity")) {
-                    HStack {
-                            TrapDetectionChartView(
-                            detections: 1,
-                            data: moveChartData)
-                            .padding([.bottom], 25)
-                    }
+                        TrapDetectionChartView(trap: trap)
+                            .padding([.bottom], 5)
                 }
                 Section(header: Text("Events / Detections")) {
 
