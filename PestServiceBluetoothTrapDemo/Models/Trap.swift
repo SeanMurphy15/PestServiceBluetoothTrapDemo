@@ -124,23 +124,28 @@ class Trap : Identifiable, ObservableObject {
     var service : [String : Any]? {
 
         let date = Date().toGMTDateString()
+        guard let device = StorageController.shared.loadDevice(serial: self.serial) else { return nil}
 
-        guard let hardwareVersion = self.hardwareVersion,
-            let firmwareVersion = self.hardwareVersion,
-            let seed = self.seed,
+        guard let serial = device["serial"],
+            let hardwareVersion = device["hardwareVersion"],
+            let firmwareVersion = device["firmwareVersion"],
+            let seed = device["seed"],
+            let model = device["model"],
+            let temperature = device["temperature"],
+            let battery = device["battery"],
             let latitude = self.latitude,
             let longitude = self.longitude,
             let accuracy = self.accuracy else { return nil }
 
         let object : [String : Any] = [
-            "Serial": self.serial,
+            "Serial": serial,
             "HardwareVersion": hardwareVersion,
             "FirmwareVersion": firmwareVersion,
-            "DeviceModel": self.data.model,
+            "DeviceModel": model,
             "Seed": seed,
             "Date": date,
-            "Tempurature": self.data.temperature,
-            "Battery": self.data.battery,
+            "Temperature": temperature,
+            "Battery": battery,
             "Detections": self.detections.map({$0.dictionary}),
             "Location" : [
                 "Latitude": latitude,

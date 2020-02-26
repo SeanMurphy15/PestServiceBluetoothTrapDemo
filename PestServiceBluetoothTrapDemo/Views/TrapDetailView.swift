@@ -69,7 +69,7 @@ struct TrapDetailView: View {
                         Text("Delete Device")
                         Spacer()
                         Button(action: {
-                            print("Remove Device button was tapped")
+                            self.bluetoothController.deactivateTrap(trap: self.trap)
                         }) {
                             Image(systemName: "trash.circle")
                         }.foregroundColor(Color.red)
@@ -103,7 +103,9 @@ struct TrapDetailView: View {
         .navigationBarTitle(Text("\(trap.modelName)"), displayMode: .inline)
         .navigationBarItems(trailing:
             Button(action: {
-                self.showingDetail = true
+                self.bluetoothController.sendTrapServiceData()
+
+                //self.showingDetail = true
             }) {
                 Text("Service")
             }.sheet(isPresented: self.$showingDetail) {

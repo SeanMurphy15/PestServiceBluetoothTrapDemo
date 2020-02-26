@@ -89,7 +89,7 @@ class NetworkService {
                         completion(false, "\(#function) failed with status code: \(httpUrlResponse.statusCode)")
 
                     }
-                    print(" \(#function) result: \(result ?? ["":""])")
+                    print("\(#function) result: \(result ?? ["":""])")
                 } else {
                     completion(false, "\(#function) failed to convert response to HTTPURLResponse")
                 }
@@ -131,7 +131,7 @@ class NetworkService {
                         completion(false, "\(#function) failed with status code: \(httpUrlResponse.statusCode)")
 
                     }
-                    print(" \(#function) result: \(result ?? ["":""])")
+                    print("\(#function) result: \(result ?? ["":""])")
                 } else {
                     completion(false, "\(#function) failed to convert response to HTTPURLResponse")
                 }
@@ -173,13 +173,13 @@ class NetworkService {
                 if let httpUrlResponse = response as? HTTPURLResponse {
                     switch httpUrlResponse.statusCode {
                     case 200:
-                        StorageController.shared.saveVersion(data: result)
+                       // StorageController.shared.saveVersion(data: result)
                         completion(true, "\(#function) retreived successfully with status code: \(httpUrlResponse.statusCode)")
                     default:
                         completion(false, "\(#function) failed with status code: \(httpUrlResponse.statusCode)")
 
                     }
-                    print(" \(#function) result: \(result ?? ["":""])")
+                    print("\(#function) result: \(result ?? ["":""])")
                 } else {
                     completion(false, "\(#function) failed to convert response to HTTPURLResponse")
                 }

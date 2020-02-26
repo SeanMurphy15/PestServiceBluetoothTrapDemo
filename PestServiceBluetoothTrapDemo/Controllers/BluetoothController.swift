@@ -71,7 +71,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
         if trap.isRegistered {
             let trapDeactivation = deviceScanner.deactivateDevice(serial: trap.serial, key: trap.deviceKey!)
             if trapDeactivation {
-                trap.delete()
+               // trap.delete()
             }
         }
     }
@@ -86,7 +86,7 @@ class BluetoothController: NSObject, ObservableObject, CBCentralManagerDelegate 
 
     func sendTrapServiceData() {
 
-        NetworkService.shared.postVisit(traps: self.servicedTraps) { (isSuccess, message) in
+        NetworkService.shared.postVisit(traps: self.registeredTraps) { (isSuccess, message) in
             if isSuccess {
                 print(message)
 
